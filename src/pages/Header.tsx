@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 
 const Header = () => {
@@ -20,10 +21,10 @@ const Header = () => {
                 </nav>
 
                 {/* Cart */}
-                <div className="cart">
+                <Link to="/cart" className="cart">
                     🛒
                     <span className="cart-count">0</span>
-                </div>
+                </Link>
 
             </div>
         </header>
