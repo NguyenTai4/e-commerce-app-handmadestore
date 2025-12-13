@@ -1,4 +1,7 @@
 import {useEffect} from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+
 
 const Home = () => {
     useEffect(() => {
@@ -50,7 +53,8 @@ const Home = () => {
     }, []);
     return (
         <div className={"Home"}>
-            <div className={"header"}></div>
+            <Header />
+
             <div className={"slide-show"}>
                 <div id={"image-track"} data-mouse-down-at={"0"} data-prev-percentage={"0"}>
                     <img className="image" src={"img/hand_made_1.jpg"} alt="" />
@@ -65,7 +69,10 @@ const Home = () => {
                     <img className="image" src={"img/hand_made_1.jpg"} alt="" />
                 </div>
             </div>
+            <Footer />
         </div>
+
     );
 }
+
 export default Home;
