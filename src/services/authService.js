@@ -1,6 +1,7 @@
 // đây là đoạn code sử dụng api của front end, sẽ gửi dữ liệu người dùng nhập vào
 // ở phần đăng nhập tới phương thức login ở back_end (api bên thứ 3 - fake api)
 // gửi thông qua 1 server (cần chạy trước - truy cập src/pages/Login.tsx để biết cách khởi chạy server api)
+const API_URL = "http://localhost:3001/auth";
 
 export async function login(email, password) {
     const res = await fetch(`${API_URL}/login`, {
