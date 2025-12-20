@@ -1,11 +1,15 @@
 import express from "express";
+import cors from "cors";
 import authRoute from "../routes/auth.route.js";
 
 const app = express();
 
+app.use(cors({
+    origin: "http://localhost:3000"
+}));
+
 app.use(express.json());
 
-// gắn auth api
 app.use("/auth", authRoute);
 
 app.listen(3001, () => {

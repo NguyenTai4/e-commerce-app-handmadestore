@@ -1,9 +1,9 @@
-import usersData from "../db_json/users.json" with { type: "json" };
+import usersData from "../../db_json/users.json" with { type: "json" };
 
 export function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) {x
+    if (!authHeader) {
         return res.status(401).json({
             message: "Missing Authorization header"
         });

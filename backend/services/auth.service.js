@@ -1,4 +1,4 @@
-import usersData from "../db_json/users.json" with { type: "json" };
+import usersData from "../../db_json/users.json" with { type: "json" };
 import { delay } from "../utils/delay.js";
 
 export async function login({ email, password }) {
