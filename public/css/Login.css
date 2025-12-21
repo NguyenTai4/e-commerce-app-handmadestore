@@ -1,0 +1,117 @@
+.login-page {
+    min-height: 100vh;
+    padding-top: 100px; /* tránh header fixed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6efe8;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card h2 {
+    margin-bottom: 8px;
+    color: #5a3e2b;
+}
+
+.login-sub {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.login-card input {
+    width: 80%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #d4a373;
+}
+
+.login-card button {
+    width: 70%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2e7d32;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.login-card button:hover {
+    background: #256428;
+    color: white;
+}
+
+.login-error {
+    background: #fdecea;
+    color: #d62828;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.social-login {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-btn {
+    border: 1px solid black !important;
+    color: black !important;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 14px;
+    border-radius: 8px;
+
+    background: transparent !important;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* hover */
+.social-btn:hover {
+    background: #2e7d32 !important;
+    color: white !important;
+}
+

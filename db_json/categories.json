@@ -1,0 +1,39 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "key": "wood",
+      "name": "Đồ handmade bằng gỗ",
+      "description": "Các sản phẩm handmade làm từ gỗ tự nhiên, thủ công",
+      "icon": "/icons/categories/wood.png"
+    },
+    {
+      "id": 2,
+      "key": "yarn",
+      "name": "Đồ handmade bằng len",
+      "description": "Các sản phẩm len móc, đan tay thủ công",
+      "icon": "/icons/categories/yarn.png"
+    },
+    {
+      "id": 3,
+      "key": "decor",
+      "name": "Handmade trang trí",
+      "description": "Sản phẩm trang trí handmade từ nhiều chất liệu",
+      "icon": "/icons/categories/decor.png"
+    },
+    {
+      "id": 4,
+      "key": "material",
+      "name": "Nguyên vật liệu handmade",
+      "description": "Len, gỗ, vải và các vật liệu phục vụ làm handmade",
+      "icon": "/icons/categories/material.png"
+    },
+    {
+      "id": 5,
+      "key": "tool",
+      "name": "Dụng cụ làm handmade",
+      "description": "Dụng cụ, bộ kit, thiết bị hỗ trợ làm đồ handmade",
+      "icon": "/icons/categories/tool.png"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Kệ gỗ treo tường tối giản",
+      "price": 420000,
+      "category": "wood",
+      "material": "Gỗ thông",
+      "description": "Kệ gỗ handmade phong cách tối giản, phù hợp trang trí phòng khách.",
+      "stock": 12,
+      "image": "/images/wood/wood1.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 2,
+      "name": "Bàn trà gỗ nhỏ",
+      "price": 850000,
+      "category": "wood",
+      "material": "Gỗ cao su",
+      "description": "Bàn trà gỗ handmade kích thước nhỏ, thích hợp căn hộ mini.",
+      "stock": 5,
+      "image": "/images/wood/wood2.jpg",
+      "rating": 4.8
+    },
+    {
+      "id": 3,
+      "name": "Giá sách gỗ đứng",
+      "price": 1250000,
+      "category": "wood",
+      "material": "Gỗ sồi",
+      "description": "Giá sách gỗ đứng chắc chắn, hoàn thiện thủ công.",
+      "stock": 3,
+      "image": "/images/wood/wood3.jpg",
+      "rating": 4.7
+    },
+    {
+      "id": 4,
+      "name": "Hộp đựng trang sức gỗ",
+      "price": 260000,
+      "category": "wood",
+      "material": "Gỗ thông",
+      "description": "Hộp đựng trang sức nhỏ gọn, chạm khắc thủ công.",
+      "stock": 20,
+      "image": "/images/wood/wood4.jpg",
+      "rating": 4.5
+    },
+    {
+      "id": 5,
+      "name": "Đèn ngủ gỗ handmade",
+      "price": 540000,
+      "category": "wood",
+      "material": "Gỗ tre",
+      "description": "Đèn ngủ gỗ handmade ánh sáng dịu nhẹ.",
+      "stock": 8,
+      "image": "/images/wood/wood5.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 6,
+      "name": "Khay gỗ decor bàn ăn",
+      "price": 190000,
+      "category": "wood",
+      "material": "Gỗ cao su",
+      "description": "Khay gỗ dùng decor hoặc đựng đồ ăn nhẹ.",
+      "stock": 15,
+      "image": "/images/wood/wood6.jpg",
+      "rating": 4.4
+    },
+    {
+      "id": 7,
+      "name": "Thú len móc tay – Gấu nâu",
+      "price": 180000,
+      "category": "yarn",
+      "material": "Len cotton",
+      "description": "Gấu len móc tay 100%, an toàn cho trẻ em.",
+      "stock": 25,
+      "image": "/images/yarn/yarn1.jpg",
+      "rating": 5.0
+    },
+    {
+      "id": 8,
+      "name": "Thú len móc tay – Thỏ trắng",
+      "price": 170000,
+      "category": "yarn",
+      "material": "Len cotton",
+      "description": "Thỏ len trắng dễ thương, quà tặng ý nghĩa.",
+      "stock": 18,
+      "image": "/images/yarn/yarn2.jpg",
+      "rating": 4.8
+    },
+    {
+      "id": 9,
+      "name": "Móc khóa len handmade",
+      "price": 65000,
+      "category": "yarn",
+      "material": "Len sợi nhỏ",
+      "description": "Móc khóa len nhiều hình dáng đáng yêu.",
+      "stock": 50,
+      "image": "/images/yarn/yarn3.jpg",
+      "rating": 4.3
+    },
+    {
+      "id": 10,
+      "name": "Túi xách len handmade",
+      "price": 320000,
+      "category": "yarn",
+      "material": "Len sợi to",
+      "description": "Túi xách len phong cách vintage.",
+      "stock": 10,
+      "image": "/images/yarn/yarn4.jpg",
+      "rating": 4.7
+    },
+    {
+      "id": 11,
+      "name": "Áo len đan tay",
+      "price": 690000,
+      "category": "yarn",
+      "material": "Len lông cừu",
+      "description": "Áo len đan tay giữ ấm tốt, thiết kế đơn giản.",
+      "stock": 6,
+      "image": "/images/yarn/yarn5.jpg",
+      "rating": 4.8
+    },
+    {
+      "id": 12,
+      "name": "Khăn len handmade",
+      "price": 210000,
+      "category": "yarn",
+      "material": "Len mềm",
+      "description": "Khăn len handmade nhẹ, phù hợp mùa lạnh.",
+      "stock": 22,
+      "image": "/images/yarn/yarn6.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 13,
+      "name": "Chậu cây gỗ mini",
+      "price": 230000,
+      "category": "wood",
+      "material": "Gỗ thông",
+      "description": "Chậu cây gỗ mini trang trí bàn làm việc.",
+      "stock": 14,
+      "image": "/images/wood/wood7.jpg",
+      "rating": 4.5
+    },
+    {
+      "id": 14,
+      "name": "Đồng hồ treo tường gỗ",
+      "price": 480000,
+      "category": "wood",
+      "material": "Gỗ sồi",
+      "description": "Đồng hồ gỗ treo tường phong cách mộc mạc.",
+      "stock": 7,
+      "image": "/images/wood/wood8.jpg",
+      "rating": 4.7
+    },
+    {
+      "id": 15,
+      "name": "Bát gỗ handmade",
+      "price": 160000,
+      "category": "wood",
+      "material": "Gỗ dừa",
+      "description": "Bát gỗ dùng trang trí hoặc đựng snack.",
+      "stock": 30,
+      "image": "/images/wood/wood9.jpg",
+      "rating": 4.4
+    },
+    {
+      "id": 16,
+      "name": "Lót ly gỗ khắc tay",
+      "price": 120000,
+      "category": "wood",
+      "material": "Gỗ tre",
+      "description": "Bộ lót ly gỗ khắc hoa văn thủ công.",
+      "stock": 40,
+      "image": "/images/wood/wood10.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 17,
+      "name": "Mũ len đan tay",
+      "price": 190000,
+      "category": "yarn",
+      "material": "Len lông cừu",
+      "description": "Mũ len đan tay giữ ấm, thời trang.",
+      "stock": 16,
+      "image": "/images/yarn/yarn7.jpg",
+      "rating": 4.7
+    },
+    {
+      "id": 18,
+      "name": "Gối len handmade",
+      "price": 360000,
+      "category": "yarn",
+      "material": "Len sợi lớn",
+      "description": "Gối len handmade trang trí sofa.",
+      "stock": 9,
+      "image": "/images/yarn/yarn8.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 19,
+      "name": "Tấm lót bàn gỗ",
+      "price": 210000,
+      "category": "wood",
+      "material": "Gỗ cao su",
+      "description": "Tấm lót bàn ăn bằng gỗ, bền và đẹp.",
+      "stock": 18,
+      "image": "/images/wood/wood11.jpg",
+      "rating": 4.5
+    },
+    {
+      "id": 20,
+      "name": "Thú len móc tay – Mèo xám",
+      "price": 185000,
+      "category": "yarn",
+      "material": "Len cotton",
+      "description": "Mèo len móc tay đáng yêu, quà tặng trẻ em.",
+      "stock": 20,
+      "image": "/images/yarn/yarn9.jpg",
+      "rating": 4.9
+    },
+    {
+      "id": 21,
+      "name": "Hộp bút gỗ handmade",
+      "price": 145000,
+      "category": "wood",
+      "material": "Gỗ thông",
+      "description": "Hộp bút gỗ thủ công, gọn nhẹ.",
+      "stock": 28,
+      "image": "/images/wood/wood12.jpg",
+      "rating": 4.4
+    },
+    {
+      "id": 22,
+      "name": "Giỏ len handmade",
+      "price": 250000,
+      "category": "yarn",
+      "material": "Len sợi to",
+      "description": "Giỏ len handmade dùng đựng đồ trang trí.",
+      "stock": 11,
+      "image": "/images/yarn/yarn10.jpg",
+      "rating": 4.6
+    },
+    {
+      "id": 23,
+      "name": "Đế điện thoại gỗ",
+      "price": 95000,
+      "category": "wood",
+      "material": "Gỗ tre",
+      "description": "Đế điện thoại gỗ nhỏ gọn, tiện lợi.",
+      "stock": 35,
+      "image": "/images/wood/wood13.jpg",
+      "rating": 4.3
+    },
+    {
+      "id": 24,
+      "name": "Ví len handmade",
+      "price": 150000,
+      "category": "yarn",
+      "material": "Len cotton",
+      "description": "Ví len nhỏ gọn, thiết kế trẻ trung.",
+      "stock": 19,
+      "image": "/images/yarn/yarn11.jpg",
+      "rating": 4.5
+    },
+    {
+      "id": 25,
+      "name": "Tranh gỗ khắc tay",
+      "price": 980000,
+      "category": "wood",
+      "material": "Gỗ sồi",
+      "description": "Tranh gỗ khắc tay nghệ thuật, trang trí phòng.",
+      "stock": 4,
+      "image": "/images/wood/wood14.jpg",
+      "rating": 4.9
+    }
+  ]
+}

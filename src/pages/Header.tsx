@@ -1,30 +1,52 @@
-import {Link} from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
+    const isLoggedIn = false;
+
     return (
         <header className="header">
             <div className="header-container">
 
-                {/* Logo */}
-                <div className="logo">
-                    <span>🌿</span>
+                {/* --- LEFT: Logo --- */}
+                <Link to="/" className="logo">
+                    <span className="logo-icon">🌿</span>
                     <h1>Handmade</h1>
-                </div>
+                </Link>
 
-                {/* Menu */}
+                {/* --- CENTER: Menu --- */}
                 <nav className="nav">
-                    <a href="#">Trang chủ</a>
-                    <a href="#">Sản phẩm</a>
-                    <a href="#">Giới thiệu</a>
-                    <a href="#">Liên hệ</a>
+                    <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Trang chủ</NavLink>
+                    <NavLink to="/products" className={({ isActive }) => isActive ? "active" : ""}>Sản phẩm</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>Giới thiệu</NavLink>
+                    <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Liên hệ</NavLink>
                 </nav>
 
-                {/* Cart */}
-                <Link to="/cart" className="cart">
-                    🛒
-                    <span className="cart-count">0</span>
-                </Link>
+                {/* --- RIGHT: Actions (Cart + Auth) --- */}
+                <div className="header-actions">
+
+                    {/* Cart */}
+                    <Link to="/cart" className="action-btn cart-btn">
+                        🛒 <span className="cart-count">2</span>
+                    </Link>
+
+                    {/* Phần Tài khoản */}
+                    <div className="auth-section">
+                        {isLoggedIn ? (
+                            /* GIAO DIỆN KHI ĐÃ ĐĂNG NHẬP */
+                            <Link to="/profile" className="profile-btn">
+                                <div className="avatar-placeholder">H</div> {/* Hoặc thẻ <img> */}
+                                <span className="username">Hi, Hùng</span>
+                            </Link>
+                        ) : (
+                            /* GIAO DIỆN KHI CHƯA ĐĂNG NHẬP */
+                            <div className="auth-buttons">
+                                <Link to="/login" className="btn-text">Đăng nhập</Link>
+                                <span className="divider">|</span>
+                                <Link to="/register" className="btn-primary">Đăng ký</Link>
+                            </div>
+                        )}
+                    </div>
+                </div>
 
             </div>
         </header>
