@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Trash2, Minus, Plus, ShoppingBag} from 'lucide-react';
+import Header from "./Header";
 
 
 const Cart = () => {
@@ -70,6 +71,7 @@ const Cart = () => {
     const navigate = useNavigate();
     return (
         <div className="cart-page-container">
+            <Header/>
             <div className="cart-header">
                 <h1><ShoppingBag size={28} style={{marginRight: '10px', marginBottom: '-4px'}}/>Giỏ hàng của bạn</h1>
                 <p>{items.length} sản phẩm trong giỏ</p>
