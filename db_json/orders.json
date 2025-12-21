@@ -1,0 +1,87 @@
+{
+  "orders": [
+    {
+      "id": 1001,
+      "userId": 2,
+      "items": [
+        { "productId": 1, "price": 350000, "quantity": 1 },
+        { "productId": 12, "price": 180000, "quantity": 2 }
+      ],
+      "total": 710000,
+      "status": "completed",
+      "createdAt": "2024-06-05"
+    },
+    {
+      "id": 1002,
+      "userId": 3,
+      "items": [
+        { "productId": 5, "price": 220000, "quantity": 1 }
+      ],
+      "total": 220000,
+      "status": "completed",
+      "createdAt": "2024-06-06"
+    },
+    {
+      "id": 1003,
+      "userId": 4,
+      "items": [
+        { "productId": 7, "price": 150000, "quantity": 2 }
+      ],
+      "total": 300000,
+      "status": "pending",
+      "createdAt": "2024-06-07"
+    },
+    {
+      "id": 1004,
+      "userId": 5,
+      "items": [
+        { "productId": 15, "price": 260000, "quantity": 1 },
+        { "productId": 22, "price": 90000, "quantity": 1 }
+      ],
+      "total": 350000,
+      "status": "completed",
+      "createdAt": "2024-06-08"
+    },
+    {
+      "id": 1005,
+      "userId": 6,
+      "items": [
+        { "productId": 9, "price": 180000, "quantity": 1 }
+      ],
+      "total": 180000,
+      "status": "completed",
+      "createdAt": "2024-06-09"
+    },
+    {
+      "id": 1006,
+      "userId": 7,
+      "items": [
+        { "productId": 18, "price": 140000, "quantity": 2 }
+      ],
+      "total": 280000,
+      "status": "shipped",
+      "createdAt": "2024-06-10"
+    },
+    {
+      "id": 1007,
+      "userId": 8,
+      "items": [
+        { "productId": 20, "price": 320000, "quantity": 1 }
+      ],
+      "total": 320000,
+      "status": "completed",
+      "createdAt": "2024-06-11"
+    },
+    {
+      "id": 1008,
+      "userId": 9,
+      "items": [
+        { "productId": 11, "price": 160000, "quantity": 1 },
+        { "productId": 26, "price": 120000, "quantity": 1 }
+      ],
+      "total": 280000,
+      "status": "pending",
+      "createdAt": "2024-06-12"
+    }
+  ]
+}
