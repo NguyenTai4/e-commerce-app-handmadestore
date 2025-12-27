@@ -20,6 +20,29 @@ export async function login(email, password) {
     return res.json();
 }
 
+export async function register({ fullName, email, password, phone, address}) {
+    const res = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fullName,
+            email,
+            password,
+            phone,
+            address
+        })
+    });
+
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Register failed");
+    }
+
+    return res.json();
+}
+
 export async function getMe(token) {
     const res = await fetch(`${API_URL}/me`, {
         headers: {

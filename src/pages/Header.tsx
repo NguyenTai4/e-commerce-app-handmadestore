@@ -1,8 +1,21 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { clearAuth } from "../utils/authStorage";
+import { User } from "../types/user";
 
-const Header = () => {
-    const isLoggedIn = false;
+interface HeaderProps {
+    user: User | null;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}
 
+const Header = ({ user, setUser }: HeaderProps) => {
+    const navigate = useNavigate();
+    const isLoggedIn = !!user;
+
+    const handleLogout = () => {
+        clearAuth();
+        setUser(null);
+        navigate("/login");
+    };
     return (
         <header className="header">
             <div className="header-container">

@@ -67,8 +67,6 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <Header />
-
             {/* --- HERO SLIDER (70% Height) --- */}
             <div className="hero-section">
                 <div className="hero-text">
