@@ -2,9 +2,13 @@ import { useState } from "react";
 import { login } from "../services/authService.js";
 import { saveAuth } from "../utils/authStorage.js";
 import { useNavigate } from "react-router-dom";
+import { User } from "../types/user";
 
+interface LoginProps {
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}
 
-export default function Login() {
+export default function Login({ setUser }: LoginProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -19,6 +23,7 @@ export default function Login() {
         try {
             const data = await login(email, password);
             saveAuth(data);
+            setUser(data.user);
             navigate("/");
         } catch (err) {
             if (err instanceof Error) {

@@ -199,6 +199,16 @@
       "phone": "0900000020",
       "address": "Bà Rịa - Vũng Tàu",
       "createdAt": "2024-02-19"
+    },
+    {
+      "id": 21,
+      "email": "vodaithanhtai777@gmail.com",
+      "password": "a01663498898",
+      "fullName": "Võ Đại Thành Tài",
+      "role": "user",
+      "phone": "01663498898",
+      "address": "",
+      "createdAt": "2025-12-27"
     }
   ]
 }

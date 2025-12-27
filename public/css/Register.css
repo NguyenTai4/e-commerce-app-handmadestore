@@ -1,0 +1,47 @@
+.login-divider {
+    width: 80%;
+    margin: 25px 0;
+    position: relative;
+    text-align: center;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ddd;
+}
+
+.login-divider::before {
+    left: 0;
+}
+
+.login-divider::after {
+    right: 0;
+}
+
+.login-divider span {
+    background: #fff;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #999;
+}
+
+.register-hint {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-hint a {
+    color: #2e7d32;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.register-hint a:hover {
+    text-decoration: underline;
+}

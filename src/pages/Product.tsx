@@ -18,7 +18,6 @@ const Products = () => {
 
     return (
         <div className="products-page">
-            <Header />
 
             {/* 1. Hero Section: Thêm background image mờ để tạo mood */}
             <section className="products-hero">
