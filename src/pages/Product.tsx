@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "./Header";
 
 const PRODUCTS_DATA = [
     { id: 1, name: "Túi Tote Thêu Tay", price: 350000, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=600", tag: "Best Seller", category: "Đồ vải" },
@@ -18,7 +17,6 @@ const Products = () => {
 
     return (
         <div className="products-page">
-            <Header />
 
             {/* 1. Hero Section: Thêm background image mờ để tạo mood */}
             <section className="products-hero">

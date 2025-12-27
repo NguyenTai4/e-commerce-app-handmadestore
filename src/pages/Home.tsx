@@ -1,13 +1,32 @@
-import { useEffect, useRef, useState } from "react";
-import Header from "./Header";
+import {useEffect, useRef, useState} from "react";
 // import Footer from "./Footer"; // Bật lại nếu bạn đã có Footer
 
 // Dữ liệu sản phẩm mẫu
 const PRODUCTS = [
-    { id: 1, name: "Túi Tote Canvas", price: "150.000đ", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500" },
-    { id: 2, name: "Vòng Tay Handmade", price: "45.000đ", img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500" },
-    { id: 3, name: "Nến Thơm Organic", price: "200.000đ", img: "https://images.unsplash.com/photo-1602825485432-6993ad87c7d2?w=500" },
-    { id: 4, name: "Gốm Sứ Bát Tràng", price: "320.000đ", img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=500" },
+    {
+        id: 1,
+        name: "Túi Tote Canvas",
+        price: "150.000đ",
+        img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500"
+    },
+    {
+        id: 2,
+        name: "Vòng Tay Handmade",
+        price: "45.000đ",
+        img: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500"
+    },
+    {
+        id: 3,
+        name: "Nến Thơm Organic",
+        price: "200.000đ",
+        img: "https://images.unsplash.com/photo-1602825485432-6993ad87c7d2?w=500"
+    },
+    {
+        id: 4,
+        name: "Gốm Sứ Bát Tràng",
+        price: "320.000đ",
+        img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=500"
+    },
 ];
 
 const Home = () => {
@@ -38,13 +57,13 @@ const Home = () => {
             // Hiệu ứng Animation cho Track
             track.animate({
                 transform: `translate(${nextPercentage}%, -50%)`
-            }, { duration: 1200, fill: "forwards" });
+            }, {duration: 1200, fill: "forwards"});
 
             // Hiệu ứng Parallax cho từng ảnh bên trong
             for (const image of Array.from(track.getElementsByClassName("image"))) {
                 (image as HTMLElement).animate({
                     objectPosition: `${nextPercentage + 100}% 50%`
-                }, { duration: 1200, fill: "forwards" });
+                }, {duration: 1200, fill: "forwards"});
             }
         };
 
@@ -67,7 +86,6 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <Header />
 
             {/* --- HERO SLIDER (70% Height) --- */}
             <div className="hero-section">
@@ -83,13 +101,20 @@ const Home = () => {
                     data-prev-percentage="0"
                 >
                     {/* Sử dụng ảnh mẫu Unsplash để demo đẹp hơn, bạn thay lại ảnh của bạn nhé */}
-                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800" draggable="false" />
+                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800"
+                         draggable="false"/>
+                    <img className="image" src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800"
+                         draggable="false"/>
                 </div>
             </div>
 
@@ -104,7 +129,7 @@ const Home = () => {
                     {PRODUCTS.map((product) => (
                         <div key={product.id} className="product-card">
                             <div className="product-img-wrapper">
-                                <img src={product.img} alt={product.name} />
+                                <img src={product.img} alt={product.name}/>
                                 <button className="add-to-cart-btn">Thêm vào giỏ</button>
                             </div>
                             <div className="product-info">

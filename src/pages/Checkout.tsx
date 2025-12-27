@@ -13,7 +13,6 @@ import {
     Tag,
     Loader
 } from "lucide-react";
-import Header from "./Header";
 
 const Checkout = () => {
     const navigate = useNavigate();
@@ -54,7 +53,6 @@ const Checkout = () => {
 
     return (
         <div className="checkout-page-container">
-            <Header/>
             <div className="checkout-header">
                 <a href="/cart" className="back-link">
                     <ChevronLeft size={20} /> Quay lại giỏ hàng

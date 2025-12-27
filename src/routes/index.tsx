@@ -5,6 +5,7 @@ import {Home, Cart, Header, Footer, Login, Products, Checkout} from "../pages";
 const AppRouter = () => {
     return (
         <BrowserRouter>
+            <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/products" element={<Products/>}/>
