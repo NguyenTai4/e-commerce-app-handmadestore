@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
-// import Footer from "./Footer"; // Bật lại nếu bạn đã có Footer
+import Footer from "./Footer";
 
 // Dữ liệu sản phẩm mẫu
 const PRODUCTS = [
@@ -103,18 +103,32 @@ const Home = () => {
                         <div key={product.id} className="product-card">
                             <div className="product-img-wrapper">
                                 <img src={product.img} alt={product.name} />
-                                <button className="add-to-cart-btn">Thêm vào giỏ</button>
+
+                                {/* Nút Yêu thích (Heart Icon) */}
+                                <button className="wishlist-btn" title="Yêu thích">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+
+                                {/* Nhóm nút hành động: Mua ngay & Thêm giỏ */}
+                                <div className="action-buttons">
+                                    <button className="btn add-to-cart">Thêm giỏ</button>
+                                    <button className="btn buy-now">Mua ngay</button>
+                                </div>
                             </div>
+
                             <div className="product-info">
                                 <h4>{product.name}</h4>
                                 <span className="price">{product.price}</span>
                             </div>
                         </div>
                     ))}
+
                 </div>
             </div>
 
-            {/* <Footer /> */}
+             <Footer />
         </div>
     );
 }
