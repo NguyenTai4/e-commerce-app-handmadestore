@@ -21,7 +21,7 @@ interface CartResponse {
 
 const Cart: React.FC = () => {
     const navigate = useNavigate();
-    // --- 2. State & Logic (GIỮ NGUYÊN) ---
+    // --- 2. State & Logic ---
     const [items, setItems] = useState<CartItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -111,7 +111,10 @@ const Cart: React.FC = () => {
             {items.length === 0 ? (
                 <div style={{textAlign: "center", padding: "40px"}}>
                     <p>Giỏ hàng đang trống.</p>
-                    <button onClick={() => navigate("/")} className="continue-shopping-btn">
+                    <button onClick={() => navigate("/")} className="continue-shopping-btn" style={{
+                        width: "200px",
+                        margin: "20px auto"
+                    }}>
                         Mua sắm ngay
                     </button>
                 </div>

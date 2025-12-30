@@ -331,9 +331,3 @@
     border-color: var(--color-text-primary);
     color: var(--color-text-primary);
 }
-
-.continue-shopping-btn {
-    width: 200px;
-    margin: 20px auto;
-
-}
