@@ -35,15 +35,42 @@ body {
     pointer-events: none; /* Để chuột click xuyên qua text vào slider */
 }
 
+.hero-text {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 10;
+    color: white;
+    pointer-events: none;
+}
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px); /* Bắt đầu cách vị trí gốc 100px về bên trái */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Trở về vị trí gốc */
+    }
+}
+/* Áp dụng animation cho thẻ H2 */
 .hero-text h2 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+
+    /* Thêm dòng này */
+    opacity: 0; /* Ẩn mặc định để tránh nháy hình trước khi animate */
+    animation: slideInLeft 1s ease-out forwards; /* Chạy trong 1s, giữ nguyên trạng thái cuối */
 }
 
+/* Áp dụng animation cho thẻ P (Delay một chút cho đẹp) */
 .hero-text p {
     font-size: 1.2rem;
-    opacity: 0.8;
+    opacity: 0; /* Ẩn mặc định */
+
+    /* Thêm dòng này: delay 0.3s để chạy sau tiêu đề */
+    animation: slideInLeft 1s ease-out 0.3s forwards;
 }
 
 .hero-text span {
@@ -114,12 +141,16 @@ body {
 }
 
 /* Product Card */
+/* ... (CSS phần Hero giữ nguyên) ... */
+
+/* --- PRODUCT CARD STYLING --- */
 .product-card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; /* Để định vị các thành phần con */
 }
 
 .product-card:hover {
@@ -141,33 +172,105 @@ body {
 }
 
 .product-card:hover .product-img-wrapper img {
-    transform: scale(1.1); /* Zoom ảnh khi hover */
+    transform: scale(1.1);
 }
 
-/* Nút thêm vào giỏ hàng ẩn, hiện khi hover */
-.add-to-cart-btn {
+/* --- NÚT YÊU THÍCH (WISHLIST) --- */
+.wishlist-btn {
     position: absolute;
-    bottom: -50px; /* Ẩn bên dưới */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #27ae60;
-    color: white;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.8);
     border: none;
-    padding: 10px 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ccc; /* Màu mặc định */
+    opacity: 0; /* Ẩn khi chưa hover vào card */
+    transform: translateX(20px); /* Dịch sang phải để tạo hiệu ứng bay vào */
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.product-card:hover .wishlist-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.wishlist-btn:hover {
+    background: #fff;
+    color: #e74c3c; /* Chuyển đỏ khi hover vào tim */
+    transform: scale(1.1); /* Phóng to nhẹ */
+}
+
+/* --- NHÓM NÚT HÀNH ĐỘNG (ADD TO CART & BUY NOW) --- */
+.action-buttons {
+    position: absolute;
+    bottom: -60px; /* Ẩn bên dưới */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Khoảng cách giữa 2 nút */
+    padding: 0 15px;
+    transition: bottom 0.3s ease-out;
+    z-index: 2;
+}
+
+.product-card:hover .action-buttons {
+    bottom: 20px; /* Trồi lên khi hover */
+}
+
+.btn {
+    border: none;
+    padding: 10px 15px;
     border-radius: 20px;
     cursor: pointer;
-    font-weight: bold;
-    transition: bottom 0.3s;
-    width: 80%;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex: 1; /* Chia đều độ rộng cho 2 nút */
 }
 
-.product-card:hover .add-to-cart-btn {
-    bottom: 15px; /* Trồi lên khi hover */
+.btn:active {
+    transform: scale(0.95);
 }
 
+/* Style riêng cho nút Thêm giỏ */
+.add-to-cart {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.add-to-cart:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style riêng cho nút Mua ngay (Nổi bật hơn) */
+.buy-now {
+    background-color: #27ae60;
+    color: white;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+}
+
+.buy-now:hover {
+    background-color: #219150;
+    box-shadow: 0 6px 12px rgba(39, 174, 96, 0.4);
+}
+
+/* Thông tin sản phẩm */
 .product-info {
     padding: 15px;
     text-align: center;
+    background: white;
+    position: relative;
+    z-index: 3; /* Đảm bảo đè lên phần ảnh nếu cần */
 }
 
 .product-info h4 {

@@ -87,7 +87,7 @@
     border: 1px solid black !important;
     color: black !important;
 
-    width: 100%;
+    width: 85% !important;
     display: flex;
     align-items: center;
     justify-content: center;
