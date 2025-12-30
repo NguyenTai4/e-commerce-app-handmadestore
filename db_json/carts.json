@@ -3,17 +3,8 @@
     {
       "id": 1,
       "userId": 2,
-      "items": [
-        {
-          "productId": 1,
-          "quantity": 1
-        },
-        {
-          "productId": 12,
-          "quantity": 2
-        }
-      ],
-      "updatedAt": "2025-12-27T14:06:40.691Z"
+      "items": [],
+      "updatedAt": "2025-12-30T04:34:32.446Z"
     },
     {
       "id": 2,

@@ -1,200 +1,9 @@
-// import React, {useEffect, useState} from "react";
-// // Import service JS (TypeScript sẽ coi nó trả về 'any')
-// import {cartService} from "../services/cartService";
-// import {getAuth} from "../utils/authStorage";
-//
-// // 1. Định nghĩa kiểu dữ liệu cho Item trong giỏ (vì service JS không có)
-// interface CartItem {
-//     productId: number;
-//     name: string;
-//     price: number;
-//     image: string;
-//     quantity: number;
-// }
-//
-// // Định nghĩa kiểu dữ liệu trả về từ API (để gợi ý code tốt hơn)
-// interface CartResponse {
-//     items: CartItem[];
-//     total?: number;
-// }
-//
-// const Cart: React.FC = () => {
-//     // 2. Khai báo State với Type rõ ràng
-//     const [items, setItems] = useState<CartItem[]>([]);
-//     const [loading, setLoading] = useState<boolean>(true);
-//     const [error, setError] = useState<string | null>(null);
-//
-//     // 3. Load dữ liệu
-//     useEffect(() => {
-//         const fetchCart = async () => {
-//             const auth = getAuth();
-//             if (!auth?.accessToken) {
-//                 setError("Vui lòng đăng nhập để xem giỏ hàng");
-//                 setLoading(false);
-//                 return;
-//             }
-//
-//             try {
-//                 // Gọi service JS, ép kiểu kết quả về CartResponse
-//                 const data = await cartService.getCart() as CartResponse;
-//                 setItems(data.items || []);
-//             } catch (err) {
-//                 console.error(err);
-//                 setError("Lỗi tải giỏ hàng.");
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-//
-//         fetchCart();
-//     }, []);
-//
-//     // 4. Hàm cập nhật chung (Optimistic Update)
-//     const updateCartData = async (newItems: CartItem[]) => {
-//         // Cập nhật UI ngay lập tức
-//         setItems(newItems);
-//
-//         try {
-//             // Gọi service JS update
-//             await cartService.updateCart(newItems);
-//         } catch (err) {
-//             console.error("Lỗi sync server:", err);
-//             alert("Có lỗi khi cập nhật giỏ hàng!");
-//             // Nếu muốn an toàn, có thể gọi lại fetchCart() ở đây để revert
-//         }
-//     };
-//
-//     // 5. Các hàm xử lý sự kiện (Type cho tham số là number)
-//     const handleIncrease = (productId: number) => {
-//         const newItems = items.map((item) =>
-//             item.productId === productId
-//                 ? {...item, quantity: item.quantity + 1}
-//                 : item
-//         );
-//         updateCartData(newItems);
-//     };
-//
-//     const handleDecrease = (productId: number) => {
-//         const newItems = items.map((item) => {
-//             if (item.productId === productId) {
-//                 const newQty = item.quantity > 1 ? item.quantity - 1 : 1;
-//                 return {...item, quantity: newQty};
-//             }
-//             return item;
-//         });
-//         updateCartData(newItems);
-//     };
-//
-//     const handleRemove = (productId: number) => {
-//         // Dùng window.confirm trong TS bình thường
-//         if (!window.confirm("Bạn chắc chắn muốn xóa sản phẩm này?")) return;
-//
-//         const newItems = items.filter((item) => item.productId !== productId);
-//         updateCartData(newItems);
-//     };
-//
-//     // Tính tổng tiền
-//     const subTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-//
-//     // Format tiền tệ
-//     const formatCurrency = (amount: number) =>
-//         new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(amount);
-//
-//     // --- RENDER UI ---
-//     if (loading) return <div style={{padding: 20}}>Đang tải dữ liệu...</div>;
-//     if (error) return <div style={{padding: 20, color: "red"}}>{error}</div>;
-//
-//     return (
-//         <div className="cart-page-container" style={{padding: "20px"}}>
-//             <h2>Giỏ hàng của bạn</h2>
-//
-//             {items.length === 0 ? (
-//                 <p>Giỏ hàng đang trống.</p>
-//             ) : (
-//                 <div className="cart-content">
-//                     {/* Render dạng bảng đơn giản */}
-//                     <table style={{width: "100%", borderCollapse: "collapse", marginTop: 20}}>
-//                         <thead>
-//                         <tr style={{borderBottom: "2px solid #ccc", textAlign: "left"}}>
-//                             <th style={{padding: 10}}>Sản phẩm</th>
-//                             <th style={{padding: 10}}>Đơn giá</th>
-//                             <th style={{padding: 10}}>Số lượng</th>
-//                             <th style={{padding: 10}}>Thành tiền</th>
-//                             <th style={{padding: 10}}>Thao tác</th>
-//                         </tr>
-//                         </thead>
-//                         <tbody>
-//                         {items.map((item) => (
-//                             <tr key={item.productId} style={{borderBottom: "1px solid #eee"}}>
-//                                 <td style={{padding: 10, display: "flex", alignItems: "center", gap: 10}}>
-//                                     <img
-//                                         src={item.image}
-//                                         alt={item.name}
-//                                         style={{width: 60, height: 60, objectFit: "cover", borderRadius: 4}}
-//                                     />
-//                                     <span>{item.name}</span>
-//                                 </td>
-//                                 <td style={{padding: 10}}>{formatCurrency(item.price)}</td>
-//                                 <td style={{padding: 10}}>
-//                                     <button
-//                                         onClick={() => handleDecrease(item.productId)}
-//                                         style={{padding: "2px 8px", marginRight: 5, cursor: "pointer"}}
-//                                     > -
-//                                     </button>
-//                                     <strong>{item.quantity}</strong>
-//                                     <button
-//                                         onClick={() => handleIncrease(item.productId)}
-//                                         style={{padding: "2px 8px", marginLeft: 5, cursor: "pointer"}}
-//                                     > +
-//                                     </button>
-//                                 </td>
-//                                 <td style={{padding: 10, fontWeight: "bold"}}>
-//                                     {formatCurrency(item.price * item.quantity)}
-//                                 </td>
-//                                 <td style={{padding: 10}}>
-//                                     <button
-//                                         onClick={() => handleRemove(item.productId)}
-//                                         style={{
-//                                             color: "red",
-//                                             border: "none",
-//                                             background: "transparent",
-//                                             cursor: "pointer",
-//                                             textDecoration: "underline"
-//                                         }}
-//                                     >
-//                                         Xóa
-//                                     </button>
-//                                 </td>
-//                             </tr>
-//                         ))}
-//                         </tbody>
-//                     </table>
-//
-//                     <div style={{marginTop: 30, textAlign: "right", borderTop: "2px solid #eee", paddingTop: 20}}>
-//                         <h3>Tổng cộng: {formatCurrency(subTotal)}</h3>
-//                         <button style={{
-//                             padding: "10px 25px",
-//                             backgroundColor: "#333",
-//                             color: "#fff",
-//                             border: "none",
-//                             fontSize: "16px",
-//                             cursor: "pointer",
-//                             marginTop: 10
-//                         }}>
-//                             Thanh toán
-//                         </button>
-//                     </div>
-//                 </div>
-//             )}
-//         </div>
-//     );
-// };
-//
-// export default Cart;
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 // Import service JS
-import { cartService } from "../services/cartService";
-import { getAuth } from "../utils/authStorage";
+import {cartService} from "../services/cartService";
+import {getAuth} from "../utils/authStorage";
+import Navigate, {useNavigate} from "react-router-dom";
+import checkout from "./Checkout";
 
 // --- 1. Interfaces ---
 interface CartItem {
@@ -211,6 +20,7 @@ interface CartResponse {
 }
 
 const Cart: React.FC = () => {
+    const navigate = useNavigate();
     // --- 2. State & Logic (GIỮ NGUYÊN) ---
     const [items, setItems] = useState<CartItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -255,7 +65,7 @@ const Cart: React.FC = () => {
     const handleIncrease = (productId: number) => {
         const newItems = items.map((item) =>
             item.productId === productId
-                ? { ...item, quantity: item.quantity + 1 }
+                ? {...item, quantity: item.quantity + 1}
                 : item
         );
         updateCartData(newItems);
@@ -265,7 +75,7 @@ const Cart: React.FC = () => {
         const newItems = items.map((item) => {
             if (item.productId === productId) {
                 const newQty = item.quantity > 1 ? item.quantity - 1 : 1;
-                return { ...item, quantity: newQty };
+                return {...item, quantity: newQty};
             }
             return item;
         });
@@ -283,7 +93,7 @@ const Cart: React.FC = () => {
 
     // Format tiền tệ
     const formatCurrency = (amount: number) =>
-        new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
+        new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(amount);
 
     // --- 3. RENDER UI (CẬP NHẬT THEO CSS MỚI) ---
 
@@ -301,7 +111,7 @@ const Cart: React.FC = () => {
             {items.length === 0 ? (
                 <div style={{textAlign: "center", padding: "40px"}}>
                     <p>Giỏ hàng đang trống.</p>
-                    <button className="continue-shopping-btn" style={{maxWidth: "200px", margin: "20px auto"}}>
+                    <button onClick={() => navigate("/")} className="continue-shopping-btn">
                         Mua sắm ngay
                     </button>
                 </div>
@@ -313,7 +123,7 @@ const Cart: React.FC = () => {
                             <div className="cart-item-card" key={item.productId}>
                                 {/* Ảnh sản phẩm */}
                                 <div className="item-image-wrapper">
-                                    <img src={item.image} alt={item.name} />
+                                    <img src={item.image} alt={item.name}/>
                                 </div>
 
                                 {/* Chi tiết sản phẩm */}
@@ -330,9 +140,12 @@ const Cart: React.FC = () => {
                                             title="Xóa sản phẩm"
                                         >
                                             {/* Icon thùng rác SVG đơn giản */}
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                 stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                 strokeLinejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                <path
+                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                             </svg>
                                         </button>
                                     </div>
@@ -398,11 +211,11 @@ const Cart: React.FC = () => {
 
                             <p className="tax-note">(Đã bao gồm VAT nếu có)</p>
 
-                            <button className="checkout-btn">
+                            <button onClick={() => (navigate("/checkout"))} className="checkout-btn">
                                 Tiến hành thanh toán
                             </button>
 
-                            <button className="continue-shopping-btn">
+                            <button onClick={() => (navigate("/"))} className="continue-shopping-btn">
                                 Tiếp tục mua sắm
                             </button>
                         </div>

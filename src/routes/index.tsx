@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Products, Cart, Login, Register,Checkout, Header, Footer} from "../pages";
-import { getAuth } from "../utils/authStorage";
-import { useEffect, useState } from "react";
-import { User } from "../types/user";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {Home, Products, Cart, Login, Register, Checkout, Header, Footer} from "../pages";
+import {getAuth} from "../utils/authStorage";
+import {useEffect, useState} from "react";
+import {User} from "../types/user";
 import ProductDetail from "../pages/ProductDetail";
 
 const AppRouter = () => {
@@ -18,18 +18,15 @@ const AppRouter = () => {
 
     return (
         <BrowserRouter>
-            <Header user={user} setUser={setUser} />
+            <Header user={user} setUser={setUser}/>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/login" element={<Login setUser={setUser} />} />
-                <Route path="/register" element={<Register setUser={setUser} />} />
                 <Route path="/" element={<Home/>}/>
                 <Route path="/products" element={<Products/>}/>
+                <Route path="/product/:id" element={<ProductDetail/>}/>
                 <Route path="/cart" element={<Cart/>}/>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/login" element={<Login setUser={setUser}/>}/>
+                <Route path="/register" element={<Register setUser={setUser}/>}/>
+                <Route path="/login" element={<Login setUser={setUser}/>}/>
                 <Route path="/checkout" element={<Checkout/>}/>
             </Routes>
         </BrowserRouter>
