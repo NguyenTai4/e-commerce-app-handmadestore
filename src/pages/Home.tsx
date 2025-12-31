@@ -116,19 +116,19 @@ const Home = () => {
                                     <button className="btn add-to-cart">Thêm giỏ</button>
                                     <button className="btn buy-now">Mua ngay</button>
                                 </div>
+                                <img src={product.img} alt={product.name}/>
+                                <button className="add-to-cart-btn">Thêm vào giỏ</button>
                             </div>
-
                             <div className="product-info">
                                 <h4>{product.name}</h4>
                                 <span className="price">{product.price}</span>
                             </div>
                         </div>
                     ))}
-
                 </div>
             </div>
 
-             <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

@@ -4,16 +4,21 @@
       "id": 1,
       "userId": 2,
       "items": [
-        { "productId": 1, "quantity": 1 },
-        { "productId": 12, "quantity": 2 }
+        {
+          "productId": 5,
+          "quantity": 1
+        }
       ],
-      "updatedAt": "2024-06-01"
+      "updatedAt": "2025-12-30T07:10:50.171Z"
     },
     {
       "id": 2,
       "userId": 3,
       "items": [
-        { "productId": 5, "quantity": 1 }
+        {
+          "productId": 5,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-02"
     },
@@ -21,8 +26,14 @@
       "id": 3,
       "userId": 4,
       "items": [
-        { "productId": 7, "quantity": 3 },
-        { "productId": 22, "quantity": 1 }
+        {
+          "productId": 7,
+          "quantity": 3
+        },
+        {
+          "productId": 22,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-03"
     },
@@ -30,7 +41,10 @@
       "id": 4,
       "userId": 5,
       "items": [
-        { "productId": 15, "quantity": 2 }
+        {
+          "productId": 15,
+          "quantity": 2
+        }
       ],
       "updatedAt": "2024-06-04"
     },
@@ -38,8 +52,14 @@
       "id": 5,
       "userId": 6,
       "items": [
-        { "productId": 9, "quantity": 1 },
-        { "productId": 28, "quantity": 1 }
+        {
+          "productId": 9,
+          "quantity": 1
+        },
+        {
+          "productId": 28,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-05"
     },
@@ -47,7 +67,10 @@
       "id": 6,
       "userId": 7,
       "items": [
-        { "productId": 30, "quantity": 2 }
+        {
+          "productId": 30,
+          "quantity": 2
+        }
       ],
       "updatedAt": "2024-06-06"
     },
@@ -55,8 +78,14 @@
       "id": 7,
       "userId": 8,
       "items": [
-        { "productId": 18, "quantity": 1 },
-        { "productId": 33, "quantity": 2 }
+        {
+          "productId": 18,
+          "quantity": 1
+        },
+        {
+          "productId": 33,
+          "quantity": 2
+        }
       ],
       "updatedAt": "2024-06-07"
     },
@@ -64,7 +93,10 @@
       "id": 8,
       "userId": 9,
       "items": [
-        { "productId": 4, "quantity": 1 }
+        {
+          "productId": 4,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-08"
     },
@@ -72,8 +104,14 @@
       "id": 9,
       "userId": 10,
       "items": [
-        { "productId": 11, "quantity": 2 },
-        { "productId": 26, "quantity": 1 }
+        {
+          "productId": 11,
+          "quantity": 2
+        },
+        {
+          "productId": 26,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-09"
     },
@@ -81,7 +119,10 @@
       "id": 10,
       "userId": 11,
       "items": [
-        { "productId": 20, "quantity": 1 }
+        {
+          "productId": 20,
+          "quantity": 1
+        }
       ],
       "updatedAt": "2024-06-10"
     }
