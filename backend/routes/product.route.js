@@ -1,13 +1,35 @@
-import jsonServer from "json-server";
-import path from "path";
-import {fileURLToPath} from 'url';
+import express from "express";
+import {getAllProducts, getProductById, getProductsByCategory} from "../services/product.service.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const router = express.Router();
 
-// Trỏ vào products.json
-const dbPath = path.join(__dirname, '../db_json/products.json');
+// GET /products
+router.get("/", async (req, res) => {
+    try {
+        const { category } = req.query;
 
-const router = jsonServer.router(dbPath);
+        if (category) {
+            const products = await getProductsByCategory(category);
+            return res.json(products);
+        }
+
+        const products = await getAllProducts();
+        res.json(products);
+    } catch (err) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+// GET /products/:id
+router.get("/:id", async (req, res) => {
+    try {
+        const product = await getProductById(req.params.id);
+        res.json(product);
+    } catch (err) {
+        res.status(err.status || 500).json({
+            message: err.message || "Server error"
+        });
+    }
+});
 
 export default router;
