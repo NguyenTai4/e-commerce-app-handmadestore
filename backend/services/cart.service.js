@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Điều chỉnh đường dẫn '../db_json' tùy cấu trúc thực tế của bạn
 const CARTS_FILE = path.join(__dirname, "../../db_json/carts.json");
 const PRODUCTS_FILE = path.join(__dirname, "../../db_json/products.json");
 
@@ -51,7 +50,6 @@ export const cartService = {
         const data = await readJson(CARTS_FILE);
         let carts = data?.carts || [];
 
-        // Chuẩn hóa item để lưu (chỉ giữ productId, quantity)
         const itemsToSave = newItems.map(i => ({
             productId: i.productId,
             quantity: i.quantity

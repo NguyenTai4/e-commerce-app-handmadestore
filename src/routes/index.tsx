@@ -1,10 +1,9 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Home, Products, Cart, Login, Register, Checkout, Header, Footer} from "../pages";
+import {Home, Products, Cart, Login, Register, Checkout, Header, Footer, ProductDetail} from "../pages";
 import {getAuth} from "../utils/authStorage";
 import {useEffect, useState} from "react";
 import {User} from "../types/user";
-import ProductDetail from "../pages/ProductDetail";
 
 const AppRouter = () => {
     const [user, setUser] = useState<User | null>(null);
