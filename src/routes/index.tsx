@@ -1,10 +1,9 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Home, Products, Cart, Login, Register, Checkout, Header, Footer} from "../pages";
+import {Home, Products, Cart, Login, Register, Checkout, Header, Footer,ProfileUser,ProductDetail} from "../pages";
 import {getAuth} from "../utils/authStorage";
 import {useEffect, useState} from "react";
 import {User} from "../types/user";
-import ProductDetail from "../pages/ProductDetail";
 
 const AppRouter = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -24,6 +23,7 @@ const AppRouter = () => {
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/product/:id" element={<ProductDetail/>}/>
                 <Route path="/cart" element={<Cart/>}/>
+                <Route path="/ProfileUser" element={<ProfileUser/>}/>
                 <Route path="/login" element={<Login setUser={setUser}/>}/>
                 <Route path="/register" element={<Register setUser={setUser}/>}/>
                 <Route path="/login" element={<Login setUser={setUser}/>}/>
