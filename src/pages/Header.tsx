@@ -10,7 +10,8 @@ interface HeaderProps {
 const Header = ({ user, setUser }: HeaderProps) => {
     const navigate = useNavigate();
     const isLoggedIn = !!user;
-
+    console.log(isLoggedIn);
+    console.log(user);
     const handleLogout = () => {
         clearAuth();
         setUser(null);
@@ -48,7 +49,7 @@ const Header = ({ user, setUser }: HeaderProps) => {
                             /* GIAO DIỆN KHI ĐÃ ĐĂNG NHẬP */
                             <Link to="/profile" className="profile-btn">
                                 <div className="avatar-placeholder">H</div> {/* Hoặc thẻ <img> */}
-                                <span className="username">Hi, Hùng</span>
+                                <span className="username">Hi, {user?.fullName}</span>
                             </Link>
                         ) : (
                             /* GIAO DIỆN KHI CHƯA ĐĂNG NHẬP */
