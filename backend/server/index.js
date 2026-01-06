@@ -4,6 +4,7 @@ import authRoute from "../routes/auth.route.js";
 import cartRoute from "../routes/cart.route.js";
 import orderRoute from "../routes/order.route.js";
 import productRoute from "../routes/product.route.js";
+import shipRoute from "../routes/ship.route.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use("/auth", authRoute);
 app.use("/carts", cartRoute);
 app.use("/orders", orderRoute);
 app.use("/products", productRoute);
+app.use("/api/ship", shipRoute);
 
 
 app.listen(3001, () => {

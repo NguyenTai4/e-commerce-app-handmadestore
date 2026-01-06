@@ -15,6 +15,21 @@ import {
 } from "lucide-react";
 import {orderService} from "../services/orderService";
 import {CartResponse} from "../types/Cart";
+import {shipService} from "../services/shipService";
+
+const VIETNAM_PROVINCES = [
+    "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh",
+    "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước", "Bình Thuận", "Cà Mau",
+    "Cần Thơ", "Cao Bằng", "Đà Nẵng", "Đắk Lắk", "Đắk Nông", "Điện Biên",
+    "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội",
+    "Hà Tĩnh", "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
+    "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn",
+    "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận",
+    "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh",
+    "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên",
+    "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh",
+    "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
+];
 
 const Checkout: React.FC = () => {
     const navigate = useNavigate();
@@ -34,6 +49,7 @@ const Checkout: React.FC = () => {
         fullName: "",
         phone: "",
         email: "",
+        province: "",
         address: ""
     });
 
@@ -42,8 +58,8 @@ const Checkout: React.FC = () => {
     const [discount, setDiscount] = useState(0);
     const [isProcessing, setIsProcessing] = useState(false);
 
-    // Tính toán phí
-    const shippingFee = 30000;
+    const [shippingFee, setShippingFee] = useState(0);
+
     const total = cartSubTotal + shippingFee - discount;
 
     // Format tiền tệ
@@ -53,6 +69,25 @@ const Checkout: React.FC = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
         setFormData(prev => ({...prev, [name]: value}));
+    };
+
+    const handleProvinceChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedProvince = e.target.value;
+
+        setFormData(prev => ({...prev, province: selectedProvince}));
+
+        if (!selectedProvince) {
+            setShippingFee(0);
+            return;
+        }
+
+        try {
+            const data = await shipService.calculateFee(selectedProvince);
+            setShippingFee(data.fee);
+        } catch (error) {
+            console.error("Lỗi tính phí ship:", error);
+            setShippingFee(50000);
+        }
     };
 
     const handleApplyVoucher = () => {
@@ -70,18 +105,20 @@ const Checkout: React.FC = () => {
     };
 
     const handlePlaceOrder = async () => {
-        if (!formData.fullName || !formData.phone || !formData.address) {
-            alert("Vui lòng điền đầy đủ thông tin giao hàng!");
+        if (!formData.fullName || !formData.phone || !formData.address || !formData.province) {
+            alert("Vui lòng điền đầy đủ thông tin giao hàng (bao gồm Tỉnh/Thành)!");
             return;
         }
 
         setIsProcessing(true);
 
         try {
+            const fullAddress = `${formData.address}, ${formData.province}`;
             await orderService.createOrder({
                 fullName: formData.fullName,
                 phone: formData.phone,
-                address: `${formData.address} (Email: ${formData.email})`
+                email: formData.email,
+                address: fullAddress
             });
 
             setTimeout(() => {
@@ -98,9 +135,6 @@ const Checkout: React.FC = () => {
     return (
         <div className="checkout-page-container">
             <div className="checkout-header">
-                {/* Dùng <Link> thay vì <a> để không bị reload trang.
-                   Nó vẫn render ra thẻ <a> trong HTML nên class "back-link" vẫn hoạt động bình thường.
-                */}
                 <Link to="/cart" className="back-link">
                     <ChevronLeft size={20}/> Quay lại giỏ hàng
                 </Link>
@@ -160,12 +194,37 @@ const Checkout: React.FC = () => {
                             </div>
 
                             <div className="form-group full-width">
+                                <label>Tỉnh / Thành phố</label>
+                                <div className="input-wrapper">
+                                    <MapPin size={18}/>
+                                    <select
+                                        name="province"
+                                        value={formData.province}
+                                        onChange={handleProvinceChange}
+                                        style={{
+                                            border: 'none',
+                                            outline: 'none',
+                                            width: '100%',
+                                            background: 'transparent',
+                                            fontSize: '14px',
+                                            color: '#333'
+                                        }}
+                                    >
+                                        <option value="">-- Chọn Tỉnh / Thành phố --</option>
+                                        {VIETNAM_PROVINCES.map((p) => (
+                                            <option key={p} value={p}>{p}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="form-group full-width">
                                 <label>Địa chỉ chi tiết</label>
                                 <div className="input-wrapper top-align">
                                     <MapPin size={18}/>
                                     <textarea
                                         name="address"
-                                        placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..."
+                                        placeholder="Số nhà, đường, phường/xã, quận/huyện..."
                                         value={formData.address}
                                         onChange={handleInputChange}
                                     ></textarea>
@@ -191,7 +250,8 @@ const Checkout: React.FC = () => {
                                 />
                                 <div className="payment-content">
                                     <span className="payment-name">Thanh toán khi nhận hàng (COD)</span>
-                                    <span className="payment-desc">Thanh toán tiền mặt cho shipper khi nhận được hàng.</span>
+                                    <span
+                                        className="payment-desc">Thanh toán tiền mặt cho shipper khi nhận được hàng.</span>
                                 </div>
                                 {paymentMethod === 'cod' && <CheckCircle size={20} className="check-icon"/>}
                             </label>
@@ -258,7 +318,11 @@ const Checkout: React.FC = () => {
                         </div>
                         <div className="summary-row">
                             <span>Phí vận chuyển</span>
-                            <span>{formatCurrency(shippingFee)}</span>
+                            {shippingFee === 0 && !formData.province ? (
+                                <span style={{color: '#999', fontStyle: 'italic'}}>Chưa tính</span>
+                            ) : (
+                                <span>{formatCurrency(shippingFee)}</span>
+                            )}
                         </div>
 
                         {discount > 0 && (
@@ -300,191 +364,3 @@ const Checkout: React.FC = () => {
 };
 
 export default Checkout;
-//     return (
-//         <div className="checkout-page-container">
-//             <div className="checkout-header">
-//                 <a href="/cart" className="back-link">
-//                     <ChevronLeft size={20}/> Quay lại giỏ hàng
-//                 </a>
-//                 <h1>Thanh toán</h1>
-//                 <p>Hoàn tất đơn hàng của bạn</p>
-//             </div>
-//
-//             <div className="checkout-layout">
-//                 <div className="checkout-form-column">
-//                     <div className="checkout-card">
-//                         <h2 className="card-title">
-//                             <MapPin size={22} className="icon-title"/>
-//                             Thông tin nhận hàng
-//                         </h2>
-//
-//                         <div className="form-grid">
-//                             <div className="form-group full-width">
-//                                 <label>Họ và tên</label>
-//                                 <div className="input-wrapper">
-//                                     <User size={18}/>
-//                                     <input type="text" placeholder="Ví dụ: Nguyễn Văn A"/>
-//                                 </div>
-//                             </div>
-//
-//                             <div className="form-group">
-//                                 <label>Số điện thoại</label>
-//                                 <div className="input-wrapper">
-//                                     <Phone size={18}/>
-//                                     <input type="tel" placeholder="0912 xxx xxx"/>
-//                                 </div>
-//                             </div>
-//
-//                             <div className="form-group">
-//                                 <label>Email</label>
-//                                 <div className="input-wrapper">
-//                                     <Mail size={18}/>
-//                                     <input type="email" placeholder="email@example.com"/>
-//                                 </div>
-//                             </div>
-//
-//                             <div className="form-group full-width">
-//                                 <label>Địa chỉ chi tiết</label>
-//                                 <div className="input-wrapper top-align">
-//                                     <MapPin size={18}/>
-//                                     <textarea
-//                                         placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..."></textarea>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//
-//                     <div className="checkout-card">
-//                         <h2 className="card-title">
-//                             <CreditCard size={22} className="icon-title"/>
-//                             Phương thức thanh toán
-//                         </h2>
-//
-//                         <div className="payment-methods">
-//                             <label className={`payment-option ${paymentMethod === 'cod' ? 'active' : ''}`}>
-//                                 <input
-//                                     type="radio"
-//                                     name="payment"
-//                                     value="cod"
-//                                     checked={paymentMethod === 'cod'}
-//                                     onChange={() => setPaymentMethod('cod')}
-//                                 />
-//                                 <div className="payment-content">
-//                                     <span className="payment-name">Thanh toán khi nhận hàng (COD)</span>
-//                                     <span
-//                                         className="payment-desc">Thanh toán tiền mặt cho shipper khi nhận được hàng.</span>
-//                                 </div>
-//                                 {paymentMethod === 'cod' && <CheckCircle size={20} className="check-icon"/>}
-//                             </label>
-//
-//                             <label className={`payment-option ${paymentMethod === 'banking' ? 'active' : ''}`}>
-//                                 <input
-//                                     type="radio"
-//                                     name="payment"
-//                                     value="banking"
-//                                     checked={paymentMethod === 'banking'}
-//                                     onChange={() => setPaymentMethod('banking')}
-//                                 />
-//                                 <div className="payment-content">
-//                                     <span className="payment-name">Chuyển khoản ngân hàng</span>
-//                                     <span className="payment-desc">Quét mã QR hoặc chuyển khoản trực tiếp 24/7.</span>
-//                                 </div>
-//                                 {paymentMethod === 'banking' && <CheckCircle size={20} className="check-icon"/>}
-//                             </label>
-//                         </div>
-//                     </div>
-//                 </div>
-//
-//                 <div className="checkout-summary-column">
-//                     <div className="checkout-summary-card">
-//                         <h2><ShoppingBag size={20} style={{marginBottom: -3}}/> Đơn hàng</h2>
-//
-//                         <div className="mini-cart-list">
-//                             <div className="mini-item">
-//                                 <div className="mini-img">
-//                                     <img src="https://via.placeholder.com/60" alt="Product"/>
-//                                     <span className="mini-qty">1</span>
-//                                 </div>
-//                                 <div className="mini-info">
-//                                     <p className="mini-name">Áo Thun Premium</p>
-//                                     <p className="mini-variant">Size L / Đen</p>
-//                                 </div>
-//                                 <span className="mini-price">250.000₫</span>
-//                             </div>
-//
-//                             <div className="mini-item">
-//                                 <div className="mini-img">
-//                                     <img src="https://via.placeholder.com/60" alt="Product"/>
-//                                     <span className="mini-qty">2</span>
-//                                 </div>
-//                                 <div className="mini-info">
-//                                     <p className="mini-name">Mũ Lưỡi Trai</p>
-//                                     <p className="mini-variant">Xám khói</p>
-//                                 </div>
-//                                 <span className="mini-price">150.000₫</span>
-//                             </div>
-//                         </div>
-//
-//                         <div className="voucher-section">
-//                             <div className="voucher-input-group">
-//                                 <Tag size={18} className="voucher-icon"/>
-//                                 <input
-//                                     type="text"
-//                                     placeholder="Mã giảm giá (VD: SALE50)"
-//                                     value={voucherCode}
-//                                     onChange={(e) => setVoucherCode(e.target.value)}
-//                                 />
-//                                 <button onClick={handleApplyVoucher}>Áp dụng</button>
-//                             </div>
-//                         </div>
-//
-//                         <div className="summary-divider"></div>
-//
-//                         <div className="summary-row">
-//                             <span>Tạm tính</span>
-//                             <span>{subtotal.toLocaleString()}₫</span>
-//                         </div>
-//                         <div className="summary-row">
-//                             <span>Phí vận chuyển</span>
-//                             <span>{shippingFee.toLocaleString()}₫</span>
-//                         </div>
-//
-//                         {discount > 0 && (
-//                             <div className="summary-row discount-row">
-//                                 <span>Giảm giá</span>
-//                                 <span>-{discount.toLocaleString()}₫</span>
-//                             </div>
-//                         )}
-//
-//                         <div className="summary-divider"></div>
-//
-//                         <div className="summary-row total">
-//                             <span>Tổng cộng</span>
-//                             <span className="total-price">{total.toLocaleString()}₫</span>
-//                         </div>
-//
-//                         <button
-//                             className="place-order-btn"
-//                             onClick={handlePlaceOrder}
-//                             disabled={isProcessing}
-//                         >
-//                             {isProcessing ? (
-//                                 <span className="loading-text">
-//                                     <Loader className="spin-icon" size={18}/> Đang xử lý...
-//                                 </span>
-//                             ) : (
-//                                 "Đặt hàng ngay"
-//                             )}
-//                         </button>
-//
-//                         <div className="security-note">
-//                             <Truck size={14}/> Giao hàng toàn quốc & Đổi trả dễ dàng
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-//
-// export default Checkout;

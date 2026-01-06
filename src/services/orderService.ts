@@ -5,6 +5,7 @@ const API_URL = "http://localhost:3001";
 export interface ShippingInfo {
     fullName: string;
     phone: string;
+    email: string;
     address: string;
 }
 

@@ -519,3 +519,42 @@
         transform: none;
     }
 }
+
+.input-wrapper select {
+    width: 100%;
+    padding: 12px 40px 12px 42px;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+.input-wrapper select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(226, 149, 120, 0.15);
+}
+
+.input-wrapper select option {
+    color: #333;
+    padding: 10px;
+}
+
+.input-wrapper select:invalid,
+.input-wrapper select option[value=""] {
+    color: var(--color-text-secondary);
+}
