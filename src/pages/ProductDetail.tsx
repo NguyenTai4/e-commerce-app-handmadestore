@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Header from "./Header"; // Nếu dùng AppRouter có Header rồi thì có thể bỏ
-import Footer from "./Footer"; // Nếu dùng AppRouter có Footer rồi thì có thể bỏ
+import Header from "./Header";
+import Footer from "./Footer";
 import { getProductBySlug } from "../services/productService";
 import { Product } from "../types/Product";
 
@@ -112,7 +112,7 @@ const ProductDetail: React.FC = () => {
 
                     <div className="description-box">
                         <p>{product.description}</p>
-                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
+                        <p className="material-info"><strong> Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
                     {/* ACTION GROUP */}
@@ -163,9 +163,9 @@ const ProductDetail: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
-                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
-                                    <p>🚚 Miễn phí vận chuyển cho đơn hàng trên 500k.</p>
+                                    <p> Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p>Bảo hành đường may, mối nối trong 3 tháng.</p>
+                                    <p>Miễn phí vận chuyển cho đơn hàng trên 500k.</p>
                                 </>
                             )}
                         </div>
