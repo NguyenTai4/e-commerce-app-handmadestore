@@ -1,45 +1,87 @@
-import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import Header from "./Header"; // Nếu dùng AppRouter có Header rồi thì có thể bỏ
+import Footer from "./Footer"; // Nếu dùng AppRouter có Footer rồi thì có thể bỏ
+import { getProductBySlug } from "../services/productService";
+import { Product } from "../types/Product";
 
-const ProductDetail = () => {
-    // Giả lập dữ liệu tĩnh để hiển thị giao diện
-    const product = {
-        id: 1,
-        name: "Túi Tote Canvas Vintage",
-        price: "150.000đ",
-        originalPrice: "200.000đ",
-        description: "Chiếc túi Canvas mang phong cách Vintage nhẹ nhàng, phù hợp cho những ngày dạo phố hay đi học. Chất liệu vải dày dặn, đường may tỉ mỉ, thân thiện với môi trường.",
-        images: [
-            "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800",
-            "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800",
-            "https://images.unsplash.com/photo-1554260570-e9689a3418b8?w=800"
-        ],
-        colors: ["#D2B48C", "#556B2F", "#1a1a1a"], // Mã màu
-        sizes: ["S", "M", "L"]
-    };
+const mockUser = null;
+const mockSetUser = () => {};
 
-    // State cho giao diện (đổi ảnh, số lượng, chọn size/màu)
-    const [mainImage, setMainImage] = useState(product.images[0]);
-    const [quantity, setQuantity] = useState(1);
-    const [selectedSize, setSelectedSize] = useState("M");
-    const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+const ProductDetail: React.FC = () => {
+    const { slug } = useParams<{ slug: string }>();
+
+    const [product, setProduct] = useState<Product | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    // State UI
+    const [mainImage, setMainImage] = useState<string>("");
+    const [quantity, setQuantity] = useState<number>(1);
+    const [activeTab, setActiveTab] = useState<"desc" | "policy">("desc");
+
+    useEffect(() => {
+        const fetchDetail = async () => {
+            if (!slug) return;
+            try {
+                setIsLoading(true);
+                setError(null);
+                const data = await getProductBySlug(slug);
+                setProduct(data);
+
+                if (data.images && data.images.length > 0) {
+                    setMainImage(data.images[0]);
+                } else {
+                    setMainImage("https://via.placeholder.com/500");
+                }
+                setQuantity(1);
+            } catch (err: any) {
+                console.error(err);
+                setError("Sản phẩm không tồn tại hoặc đã bị xóa.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchDetail();
+        window.scrollTo(0, 0);
+    }, [slug]);
+
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <h3>⏳ Đang tải chi tiết sản phẩm...</h3>
+            </div>
+        );
+    }
+
+    if (error || !product) {
+        return (
+            <div className="error-container">
+                <h2>Oops! {error}</h2>
+                <Link to="/">← Quay lại Cửa hàng</Link>
+            </div>
+        );
+    }
 
     return (
-        <div className="page-wrapper">
+        <>
+            {/* Nếu AppRouter đã có Header, bạn có thể xóa dòng này */}
+            {/* <Header user={mockUser} setUser={mockSetUser} /> */}
 
             <div className="product-detail-container">
-                {/* --- CỘT TRÁI: ẢNH SẢN PHẨM --- */}
+
+                {/* CỘT TRÁI: GALLERY */}
                 <div className="product-gallery">
                     <div className="main-image-frame">
-                        <img src={mainImage} alt="Main Product" />
+                        <img src={mainImage} alt={product.name} />
                     </div>
                     <div className="thumbnail-list">
-                        {product.images.map((img, index) => (
+                        {product.images?.map((img, idx) => (
                             <img
-                                key={index}
+                                key={idx}
                                 src={img}
-                                alt={`thumb-${index}`}
+                                alt={`thumb-${idx}`}
                                 className={mainImage === img ? "active" : ""}
                                 onClick={() => setMainImage(img)}
                             />
@@ -47,101 +89,91 @@ const ProductDetail = () => {
                     </div>
                 </div>
 
-                {/* --- CỘT PHẢI: THÔNG TIN --- */}
+                {/* CỘT PHẢI: INFO */}
                 <div className="product-info">
-                    <div className="breadcrumb-text">Trang chủ / Túi xách / {product.name}</div>
+                    {/* Breadcrumb */}
+                    <div className="breadcrumb">
+                        <Link to="/">Trang chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
+                    </div>
 
                     <h1 className="product-name">{product.name}</h1>
 
                     <div className="product-meta">
-                        <div className="rating">
-                            ★★★★☆ <span>(4.8/5 đánh giá)</span>
-                        </div>
-                        <div className="status">Còn hàng</div>
+                        <span className="rating">⭐ {product.rating} / 5</span>
+                        <span>Đã bán: 120+</span>
+                        <span className={`stock-status ${product.stock > 0 ? "in-stock" : "out-stock"}`}>
+                            {product.stock > 0 ? `Còn hàng (${product.stock})` : "Hết hàng"}
+                        </span>
                     </div>
 
-                    <div className="product-price-box">
-                        <span className="current-price">{product.price}</span>
-                        <span className="old-price">{product.originalPrice}</span>
-                        <span className="discount-tag">-25%</span>
+                    <div className="price-box">
+                        <span className="current-price">{product.price.toLocaleString()}đ</span>
                     </div>
 
-                    <p className="description">{product.description}</p>
-
-                    {/* Chọn Màu */}
-                    <div className="options-group">
-                        <span className="option-label">Màu sắc:</span>
-                        <div className="color-options">
-                            {product.colors.map((color, index) => (
-                                <button
-                                    key={index}
-                                    style={{ backgroundColor: color }}
-                                    className={selectedColor === color ? "selected" : ""}
-                                    onClick={() => setSelectedColor(color)}
-                                ></button>
-                            ))}
-                        </div>
+                    <div className="description-box">
+                        <p>{product.description}</p>
+                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
-                    {/* Chọn Size */}
-                    <div className="options-group">
-                        <span className="option-label">Kích thước:</span>
-                        <div className="size-options">
-                            {product.sizes.map((size) => (
-                                <button
-                                    key={size}
-                                    className={selectedSize === size ? "selected" : ""}
-                                    onClick={() => setSelectedSize(size)}
-                                >
-                                    {size}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Chọn Số lượng & Nút Mua */}
+                    {/* ACTION GROUP */}
                     <div className="action-group">
                         <div className="quantity-control">
-                            <button onClick={() => setQuantity(q => Math.max(1, q - 1))}>-</button>
-                            <input type="text" value={quantity} readOnly />
-                            <button onClick={() => setQuantity(q => q + 1)}>+</button>
+                            <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+                            <input readOnly value={quantity} />
+                            <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}>+</button>
                         </div>
 
-                        <div className="buttons-wrapper">
-                            <button className="btn-add-cart">Thêm vào giỏ</button>
-                            <button className="btn-buy-now">Mua ngay</button>
-                        </div>
+                        <button
+                            className="btn-add-cart"
+                            disabled={product.stock === 0}
+                        >
+                            {product.stock > 0
+                                ? `THÊM VÀO GIỎ - ${(product.price * quantity).toLocaleString()}đ`
+                                : "HẾT HÀNG"
+                            }
+                        </button>
                     </div>
 
-                    {/* Chính sách (Icon minh họa bằng emoji hoặc SVG) */}
-                    <div className="policy-section">
-                        <div className="policy-item">
-                            <span className="icon">🚚</span>
-                            <div>
-                                <strong>Miễn phí vận chuyển</strong>
-                                <p>Cho đơn hàng trên 500k</p>
-                            </div>
+                    {/* TABS THÔNG TIN */}
+                    <div className="extra-info-tabs">
+                        <div className="tab-header">
+                            <button
+                                className={`tab-btn ${activeTab === "desc" ? "active" : ""}`}
+                                onClick={() => setActiveTab("desc")}
+                            >
+                                Mô tả chi tiết
+                            </button>
+                            <button
+                                className={`tab-btn ${activeTab === "policy" ? "active" : ""}`}
+                                onClick={() => setActiveTab("policy")}
+                            >
+                                Chính sách bảo hành
+                            </button>
                         </div>
-                        <div className="policy-item">
-                            <span className="icon">↩️</span>
-                            <div>
-                                <strong>Đổi trả dễ dàng</strong>
-                                <p>Trong vòng 7 ngày</p>
-                            </div>
-                        </div>
-                        <div className="policy-item">
-                            <span className="icon">🛡️</span>
-                            <div>
-                                <strong>Bảo hành chính hãng</strong>
-                                <p>Cam kết chất lượng 100%</p>
-                            </div>
+
+                        <div className="tab-content">
+                            {activeTab === "desc" ? (
+                                <>
+                                    <p>Sản phẩm được chế tác thủ công 100% từ các nghệ nhân lành nghề.</p>
+                                    <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                                        <li>Chất liệu thân thiện với môi trường.</li>
+                                        <li>Màu sắc tự nhiên, bền đẹp theo thời gian.</li>
+                                        <li>Thích hợp làm quà tặng hoặc trang trí nhà cửa.</li>
+                                    </ul>
+                                </>
+                            ) : (
+                                <>
+                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
+                                    <p>🚚 Miễn phí vận chuyển cho đơn hàng trên 500k.</p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-
             <Footer />
-        </div>
+        </>
     );
 };
 

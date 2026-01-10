@@ -28,13 +28,15 @@ const Header = ({ user, setUser }: HeaderProps) => {
         <header className="header">
             <div className="header-container">
 
-                {/* --- LEFT: Logo --- */}
+                {/*Logo*/}
                 <Link to="/" className="logo">
-                    <span className="logo-icon">🌿</span>
-                    <h1>Handmade</h1>
+                    <img
+                        src="../../public/img/logo.png"
+                        className="logo-image"
+                    />
                 </Link>
 
-                {/* --- CENTER: Menu --- */}
+                {/*Menu */}
                 <nav className="nav">
                     <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Trang chủ</NavLink>
                     <NavLink to="/products" className={({ isActive }) => isActive ? "active" : ""}>Sản phẩm</NavLink>
@@ -42,7 +44,7 @@ const Header = ({ user, setUser }: HeaderProps) => {
                     <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Liên hệ</NavLink>
                 </nav>
 
-                {/* --- RIGHT: Actions (Cart + Auth) --- */}
+                {/*Actions*/}
                 <div className="header-actions">
 
                     {/* Cart */}

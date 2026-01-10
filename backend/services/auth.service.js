@@ -43,7 +43,9 @@ export async function login({ email, password }) {
             id: user.id,
             fullName : user.fullName,
             email: user.email,
-            role: user.role
+            role: user.role,
+            phone: user.phone,
+            address: user.address
         }
     };
 }
@@ -96,4 +98,37 @@ export async function register({email, password, fullName, phone, address }) {
             role: newUser.role,
         }
     };
+}
+export async function updateUser(id, updateData) {
+    await delay();
+
+    // 1. Tìm vị trí user trong mảng
+    const index = usersData.users.findIndex(u => u.id === Number(id));
+    if (index === -1) {
+        throw { status: 404, message: "User not found" };
+    }
+
+    // 2. Cập nhật dữ liệu (Giữ lại các trường quan trọng không cho sửa như email, id, role...)
+    const currentUser = usersData.users[index];
+    const updatedUser = {
+        ...currentUser,
+        fullName: updateData.fullName || currentUser.fullName,
+        phone: updateData.phone || currentUser.phone,
+        address: updateData.address || currentUser.address,
+        // Không cho phép update password, email, role ở đây để bảo mật
+    };
+
+    // 3. Cập nhật vào mảng trong bộ nhớ
+    usersData.users[index] = updatedUser;
+
+    // 4. Ghi đè lại file users.json (Persistence)
+    fs.writeFileSync(
+        USERS_FILE,
+        JSON.stringify(usersData, null, 2),
+        "utf-8"
+    );
+
+    // 5. Trả về thông tin user mới (đã loại bỏ password nếu cần thiết)
+    const { password, ...userWithoutPass } = updatedUser;
+    return userWithoutPass;
 }

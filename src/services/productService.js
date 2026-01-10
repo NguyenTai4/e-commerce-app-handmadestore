@@ -32,3 +32,21 @@ export async function getProductsByCategory(category) {
 
     return res.json();
 }
+export async function getProductBySlug(slug) {
+    // JSON Server lọc trả về mảng, ví dụ: /products?slug=ten-san-pham
+    const res = await fetch(`${API_URL}?slug=${slug}`);
+
+    if (!res.ok) {
+        throw new Error("Lỗi kết nối khi tải sản phẩm");
+    }
+
+    const data = await res.json();
+
+    // Vì API trả về mảng, ta kiểm tra xem có phần tử nào không
+    if (data.length === 0) {
+        throw new Error("Không tìm thấy sản phẩm");
+    }
+
+    // Trả về phần tử đầu tiên tìm thấy
+    return data[0];
+}
