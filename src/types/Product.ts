@@ -7,7 +7,7 @@ export interface Product {
     material: string;
     description: string;
     stock: number;
-    images: string[];
+    images: string;
     rating: number;
     tags?: string[];
 }

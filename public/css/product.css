@@ -332,6 +332,45 @@ a.product-card {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* Trong product-card */
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Nút thêm nhanh */
+.btn-quick-add {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(50px); /* Ẩn xuống dưới */
+    background: white;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-quick-add:hover {
+    background: #333;
+    color: white;
+}
+.product-card:hover .btn-quick-add {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
 
 .price {
     color: var(--secondary-color);

@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Header from "./Header";
 import Footer from "./Footer";
-import { getProductBySlug } from "../services/productService";
+import { getProductById } from "../services/productService";
 import { Product } from "../types/Product";
 
-const mockUser = null;
-const mockSetUser = () => {};
-
 const ProductDetail: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
+    const { id } = useParams<{ id: string }>();
 
     const [product, setProduct] = useState<Product | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     // State UI
-    const [mainImage, setMainImage] = useState<string>("");
     const [quantity, setQuantity] = useState<number>(1);
     const [activeTab, setActiveTab] = useState<"desc" | "policy">("desc");
 
     useEffect(() => {
         const fetchDetail = async () => {
-            if (!slug) return;
+            if (!id) return;
+
             try {
                 setIsLoading(true);
                 setError(null);
-                const data = await getProductBySlug(slug);
+
+                const data = await getProductById(id);
                 setProduct(data);
 
-                if (data.images && data.images.length > 0) {
-                    setMainImage(data.images[0]);
-                } else {
-                    setMainImage("https://via.placeholder.com/500");
-                }
+                // Reset số lượng
                 setQuantity(1);
             } catch (err: any) {
                 console.error(err);
@@ -45,14 +38,10 @@ const ProductDetail: React.FC = () => {
 
         fetchDetail();
         window.scrollTo(0, 0);
-    }, [slug]);
+    }, [id]);
 
     if (isLoading) {
-        return (
-            <div className="loading-container">
-                <h3>⏳ Đang tải chi tiết sản phẩm...</h3>
-            </div>
-        );
+        return <div className="loading-container"><h3>⏳ Đang tải chi tiết sản phẩm...</h3></div>;
     }
 
     if (error || !product) {
@@ -66,32 +55,21 @@ const ProductDetail: React.FC = () => {
 
     return (
         <>
-            {/* Nếu AppRouter đã có Header, bạn có thể xóa dòng này */}
-            {/* <Header user={mockUser} setUser={mockSetUser} /> */}
-
+            {/* Đã xóa chữ Z thừa ở đây */}
             <div className="product-detail-container">
 
                 {/* CỘT TRÁI: GALLERY */}
                 <div className="product-gallery">
                     <div className="main-image-frame">
-                        <img src={mainImage} alt={product.name} />
-                    </div>
-                    <div className="thumbnail-list">
-                        {product.images?.map((img, idx) => (
-                            <img
-                                key={idx}
-                                src={img}
-                                alt={`thumb-${idx}`}
-                                className={mainImage === img ? "active" : ""}
-                                onClick={() => setMainImage(img)}
-                            />
-                        ))}
+                        <img
+                            src={product.images || "https://via.placeholder.com/500"}
+                            alt={product.name}
+                        />
                     </div>
                 </div>
 
                 {/* CỘT PHẢI: INFO */}
                 <div className="product-info">
-                    {/* Breadcrumb */}
                     <div className="breadcrumb">
                         <Link to="/">Trang chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
                     </div>
@@ -100,9 +78,8 @@ const ProductDetail: React.FC = () => {
 
                     <div className="product-meta">
                         <span className="rating">⭐ {product.rating} / 5</span>
-                        <span>Đã bán: 120+</span>
                         <span className={`stock-status ${product.stock > 0 ? "in-stock" : "out-stock"}`}>
-                            {product.stock > 0 ? `Còn hàng (${product.stock})` : "Hết hàng"}
+                            {product.stock > 0 ? `Còn hàng` : "Hết hàng"}
                         </span>
                     </div>
 
@@ -112,10 +89,9 @@ const ProductDetail: React.FC = () => {
 
                     <div className="description-box">
                         <p>{product.description}</p>
-                        <p className="material-info"><strong> Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
+                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
-                    {/* ACTION GROUP */}
                     <div className="action-group">
                         <div className="quantity-control">
                             <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
@@ -134,7 +110,6 @@ const ProductDetail: React.FC = () => {
                         </button>
                     </div>
 
-                    {/* TABS THÔNG TIN */}
                     <div className="extra-info-tabs">
                         <div className="tab-header">
                             <button
@@ -163,9 +138,8 @@ const ProductDetail: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <p> Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
-                                    <p>Bảo hành đường may, mối nối trong 3 tháng.</p>
-                                    <p>Miễn phí vận chuyển cho đơn hàng trên 500k.</p>
+                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
                                 </>
                             )}
                         </div>

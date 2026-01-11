@@ -19,7 +19,7 @@
       "stock": 12,
       "rating": 4.6,
       "tags": ["best-seller"],
-      "images": ["/images/wood/wood1.jpg"],
+      "image": "/images/wood/wood1.jpg",
       "createdAt": "2025-01-05"
     },
     {
@@ -33,7 +33,7 @@
       "stock": 5,
       "rating": 4.8,
       "tags": ["new"],
-      "images": ["/images/wood/wood2.jpg"],
+      "image": "/images/wood/wood2.jpg",
       "createdAt": "2025-01-12"
     },
     {
@@ -47,7 +47,7 @@
       "stock": 3,
       "rating": 4.7,
       "tags": ["limited"],
-      "images": ["/images/wood/wood3.jpg"],
+      "image": "/images/wood/wood3.jpg",
       "createdAt": "2025-01-20"
     },
     {
@@ -61,7 +61,7 @@
       "stock": 25,
       "rating": 5.0,
       "tags": ["best-seller"],
-      "images": ["/images/yarn/yarn1.jpg"],
+      "image": "/images/yarn/yarn1.jpg",
       "createdAt": "2025-02-01"
     },
     {
@@ -75,7 +75,7 @@
       "stock": 10,
       "rating": 4.7,
       "tags": [],
-      "images": ["/images/yarn/yarn4.jpg"],
+      "image": "/images/yarn/yarn4.jpg",
       "createdAt": "2025-02-10"
     },
     {
@@ -89,7 +89,7 @@
       "stock": 20,
       "rating": 4.9,
       "tags": ["best-seller"],
-      "images": ["/images/yarn/yarn9.jpg"],
+      "image": "/images/yarn/yarn9.jpg",
       "createdAt": "2025-02-15"
     },
     {
@@ -103,7 +103,7 @@
       "stock": 4,
       "rating": 4.9,
       "tags": ["limited"],
-      "images": ["/images/wood/wood14.jpg"],
+      "image": "/images/wood/wood14.jpg",
       "createdAt": "2025-02-20"
     }
   ]

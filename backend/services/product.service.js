@@ -30,17 +30,3 @@ export async function getProductsByCategory(category) {
         p => p.category === category
     );
 }
-export async function getProductBySlug(slug) {
-    await delay();
-
-    // Tìm sản phẩm có slug trùng khớp
-    const product = productsData.products.find(p => p.slug === slug);
-
-    if (!product) {
-        throw {
-            status: 404,
-            message: "Không tìm thấy sản phẩm này"
-        };
-    }
-    return product;
-}
