@@ -58,7 +58,6 @@ const Header = ({ user, setUser }: HeaderProps) => {
                             /* --- GIAO DIỆN KHI ĐÃ ĐĂNG NHẬP (CÓ DROPDOWN) --- */
                             <div className="user-dropdown-container">
 
-                                {/* 1. Nút kích hoạt (Trigger) hình Elip */}
                                 <div
                                     className={`profile-trigger ${isOpen ? 'active' : ''}`}
                                     onClick={() => setIsOpen(!isOpen)}

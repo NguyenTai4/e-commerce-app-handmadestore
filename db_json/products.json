@@ -1,12 +1,4 @@
 {
-  "meta": {
-    "currency": "VND",
-    "total": 25,
-    "categories": [
-      { "key": "wood", "label": "Đồ gỗ" },
-      { "key": "yarn", "label": "Đồ len" }
-    ]
-  },
   "products": [
     {
       "id": 1,
