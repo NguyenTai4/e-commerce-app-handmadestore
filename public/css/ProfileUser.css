@@ -1,0 +1,213 @@
+/* Layout chung */
+.profile-page {
+    background-color: #f4f6f8; /* Màu nền xám nhẹ cho toàn trang */
+    min-height: 100vh;
+    padding: 40px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-heading {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Chia cột: Trái 1 phần, Phải 2 phần */
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .profile-layout {
+        grid-template-columns: 1fr; /* Mobile thì xếp chồng */
+    }
+}
+
+/* Card Style (Khung trắng bao quanh) */
+.profile-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 30px;
+    height: fit-content;
+}
+
+/* --- LEFT COLUMN: INFO --- */
+.avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #27ae60; /* Xanh lá */
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.user-name {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.user-role {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    color: #555;
+    transition: 0.3s;
+}
+
+/* Khi input bị disable */
+.form-group input:disabled {
+    background-color: #f9f9f9;
+    border-color: transparent;
+    cursor: default;
+}
+
+/* Khi bấm nút Sửa, input chuyển sang màu trắng */
+.form-group input.editable {
+    background-color: #fff;
+    border-color: #27ae60;
+    color: #000;
+}
+
+.disabled-input {
+    background-color: #eee !important;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.btn-group {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-edit {
+    background-color: #27ae60;
+    color: #fff;
+}
+.btn-edit:hover { background-color: #219150; }
+
+.btn-save {
+    background-color: #2980b9;
+    color: #fff;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* --- RIGHT COLUMN: ORDERS --- */
+.section-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th {
+    text-align: left;
+    padding: 12px;
+    background-color: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.orders-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.order-id {
+    color: #2980b9;
+    font-weight: 500;
+}
+
+.order-total {
+    font-weight: bold;
+}
+
+/* Status Tags */
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-tag.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-tag.warning {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.status-tag.danger {
+    background-color: #ffebee;
+    color: #c62828;
+}

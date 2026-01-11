@@ -5,5 +5,7 @@ export {default as Footer} from "./Footer";
 export {default as Login} from "./Login";
 export {default as Products} from "./Product";
 export {default as Checkout} from "./Checkout";
-export {default as Register} from "./Register";
-export {default as ProductDetail} from "./ProductDetail";
+export { default as Register } from "./Register";
+export { default as ProfileUser } from "./ProfileUser";
+export { default as ProductDetail } from "./ProductDetail";
+

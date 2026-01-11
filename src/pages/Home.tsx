@@ -54,12 +54,12 @@ const Home = () => {
         };
 
         // Gán sự kiện vào window để kéo mượt hơn (không bị tuột khi chuột ra khỏi div)
-        window.addEventListener("mousedown", handleMouseDown);
+        track.addEventListener("mousedown", handleMouseDown);
         window.addEventListener("mouseup", handleMouseUp);
         window.addEventListener("mousemove", handleMouseMove);
 
         return () => {
-            window.removeEventListener("mousedown", handleMouseDown);
+            track.removeEventListener("mousedown", handleMouseDown);
             window.removeEventListener("mouseup", handleMouseUp);
             window.removeEventListener("mousemove", handleMouseMove);
         };
@@ -81,13 +81,13 @@ const Home = () => {
                     data-prev-percentage="0"
                 >
                     {/* Sử dụng ảnh mẫu Unsplash để demo đẹp hơn, bạn thay lại ảnh của bạn nhé */}
-                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800" draggable="false" />
+                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1555529733-0e670560f7e1?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800" draggable="false" alt={""}/>
                 </div>
             </div>
 
