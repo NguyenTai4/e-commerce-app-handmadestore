@@ -1,130 +1,162 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getAllProducts } from "../services/productService"; // Import service
+import { Product } from "../types/Product";
+/* =======================
 
-const PRODUCTS_DATA = [
-    { id: 1, name: "Túi Tote Thêu Tay", price: 350000, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=600", tag: "Best Seller", category: "Đồ vải" },
-    { id: 2, name: "Bình Gốm Men Rạn", price: 520000, image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&q=80&w=600", tag: "Mới", category: "Đồ gốm" },
-    { id: 3, name: "Khuyên Tai Bạc", price: 280000, image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600", tag: null, category: "Trang sức" },
-    { id: 4, name: "Nến Thơm Organic", price: 180000, image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&q=80&w=600", tag: "-10%", category: "Trang trí" },
-    { id: 5, name: "Khăn Len Handmade", price: 450000, image: "https://images.unsplash.com/photo-1629029193630-36365a259961?auto=format&fit=crop&q=80&w=600", tag: null, category: "Đồ len" },
-    { id: 6, name: "Bộ Ấm Trà Zen", price: 890000, image: "https://images.unsplash.com/photo-1590326071738-f864860f7e4b?auto=format&fit=crop&q=80&w=600", tag: "Limited", category: "Đồ gốm" },
-];
+TYPES & CONSTANTS
 
-const CATEGORIES = ["Tất cả", "Đồ gốm", "Đồ len", "Trang sức", "Trang trí nhà cửa", "Đồ vải"];
+======================= */
 
-const Products = () => {
-    const [activeCategory, setActiveCategory] = useState("Tất cả");
-    const [priceRange, setPriceRange] = useState(500000);
+type CategoryKey = "all" | "wood" | "yarn";
+const CATEGORY_MAP: Record<CategoryKey, string> = {
 
+    all: "Tất cả",
+
+    wood: "Đồ gỗ",
+
+    yarn: "Đồ len"
+
+};
+const Products: React.FC = () => {
+// 1. State lưu trữ dữ liệu từ API
+    const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+// State bộ lọc
+    const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+    const [priceRange, setPriceRange] = useState<number>(1_500_000);
+    const [sortType, setSortType] = useState<string>("newest");
+// 2. Gọi API khi component được mount
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+// Gọi hàm từ productService.js
+                const data = await getAllProducts();
+                setProducts(data);
+            } catch (err: any) {
+                console.error("Lỗi tải sản phẩm:", err);
+                setError("Không thể tải danh sách sản phẩm.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+    /* =======================
+    FILTER + SORT LOGIC
+    ======================= */
+// Logic này giữ nguyên, nhưng chạy trên state 'products' đã fetch về
+    const filteredProducts = products
+        .filter((p: Product) =>
+            activeCategory === "all" ? true : p.category === activeCategory
+        )
+        .filter((p: Product) => p.price <= priceRange)
+        .sort((a: Product, b: Product) => {
+            switch (sortType) {
+                case "price-asc":
+                    return a.price - b.price;
+                case "price-desc":
+                    return b.price - a.price;
+                case "rating":
+                    return b.rating - a.rating;
+                default:
+// Sắp xếp theo ID giảm dần (mới nhất giả lập)
+                    return b.id - a.id;
+            }
+        });
+// 3. Hiển thị Loading , Lỗi
+    if (isLoading) return <div className="loading">Đang tải sản phẩm...</div>;
+    if (error) return <div className="error">{error}</div>;
     return (
         <div className="products-page">
-
-            {/* 1. Hero Section: Thêm background image mờ để tạo mood */}
-            <section className="products-hero">
-                <div className="hero-overlay"></div>
+            <div className="products-hero">
                 <div className="hero-content">
-                    <h1>Bộ Sưu Tập Thủ Công</h1>
+                    <h1>Sản phẩm Handmade</h1>
                     <div className="divider-icon">✦</div>
-                    <p>Nơi những giá trị truyền thống gặp gỡ thiết kế hiện đại</p>
+                    <p>Tinh hoa nghệ thuật thủ công & sáng tạo</p>
                 </div>
-            </section>
+            </div>
 
             <div className="products-container">
-                {/* 2. Sidebar Filter */}
+                {/* SIDEBAR */}
                 <aside className="filter-sidebar">
-                    <div className="filter-group">
-                        <h3>Danh mục</h3>
-                        <ul className="category-list">
-                            {CATEGORIES.map((cat) => (
-                                <li
-                                    key={cat}
-                                    className={activeCategory === cat ? "active" : ""}
-                                    onClick={() => setActiveCategory(cat)}
-                                >
-                                    {cat}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <h3>Danh mục</h3>
+                    <ul className="category-list">
+                        {(Object.keys(CATEGORY_MAP) as CategoryKey[]).map((key) => (
+                            <li
+                                key={key}
+                                className={activeCategory === key ? "active" : ""}
+                                onClick={() => setActiveCategory(key)}
+                            >
+                                {CATEGORY_MAP[key]}
+                            </li>
+                        ))}
 
-                    <div className="filter-group">
-                        <h3>Khoảng giá</h3>
-                        <div className="price-range-wrapper">
-                            <div className="range-info">
-                                <span>0đ</span>
-                                <span className="current-price">{priceRange.toLocaleString()}đ</span>
-                                <span>1tr+</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="0"
-                                max="1000000"
-                                step="50000"
-                                value={priceRange}
-                                onChange={(e) => setPriceRange(Number(e.target.value))}
-                                className="custom-range"
-                            />
-                        </div>
-                    </div>
+                    </ul>
+                    <h3>Giá tối đa</h3>
+                    <p>{priceRange.toLocaleString()}đ</p>
+                    <input
+                        type="range"
+                        min={0}
+                        max={1_500_000}
+                        step={50_000}
+                        value={priceRange}
+                        onChange={(e) => setPriceRange(Number(e.target.value))}
+                    />
                 </aside>
 
-                {/* 3. Main Content */}
                 <main className="product-main">
                     <div className="sort-bar">
-                        <span className="result-count">Hiển thị {PRODUCTS_DATA.length} sản phẩm</span>
-                        <div className="sort-dropdown">
-                            <label>Sắp xếp:</label>
-                            <select>
-                                <option>Mới nhất</option>
-                                <option>Giá: Thấp đến Cao</option>
-                                <option>Giá: Cao đến Thấp</option>
-                                <option>Bán chạy nhất</option>
-                            </select>
-                        </div>
+                        <select onChange={(e) => setSortType(e.target.value)} value={sortType}>
+                            <option value="newest">Mới nhất</option>
+                            <option value="price-asc">Giá thấp → cao</option>
+                            <option value="price-desc">Giá cao → thấp</option>
+                            <option value="rating">Đánh giá cao</option>
+                        </select>
                     </div>
 
                     <div className="product-grid">
-                        {PRODUCTS_DATA.map((product) => (
-                            <ProductCard
-                                key={product.id}
-                                image={product.image}
-                                name={product.name}
-                                price={product.price}
-                                tag={product.tag}
-                            />
-                        ))}
+                        {filteredProducts.length > 0 ? (
+                            filteredProducts.map((product: Product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))
+                        ) : (
+                            <p>Không tìm thấy sản phẩm nào.</p>
+                        )}
                     </div>
                 </main>
             </div>
         </div>
     );
 };
-
-// Component Card được nâng cấp
-const ProductCard = ({ image, name, price, tag }: any) => (
-    <div className="product-card">
-        <div className="image-wrapper">
-            {tag && <span className={`product-tag ${tag === 'Best Seller' ? 'tag-hot' : 'tag-new'}`}>{tag}</span>}
-            <img src={image} alt={name} loading="lazy" />
-
-            {/* Action Overlay */}
-            <div className="card-actions">
-                <button className="action-btn" title="Thêm vào giỏ">
-                    {/* Dùng SVG icon thay vì text để đẹp hơn */}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path><path d="M20 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"></path><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                </button>
-                <button className="action-btn" title="Xem nhanh">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                </button>
+/* =======================
+PRODUCT CARD COMPONENT
+======================= */
+interface ProductCardProps {
+    product: Product;
+}
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+// Kiểm tra an toàn cho ảnh
+    const imageUrl = (product.images && product.images.length > 0)
+        ? product.images[0]
+        : "https://via.placeholder.com/300";
+    return (
+        <Link to={`/product/${product.slug}`} className="product-card">
+            <div className="image-wrapper">
+                <img src={imageUrl} alt={product.name} />
+                {/* Tag sản phẩm (nếu có logic) */}
+                {product.stock === 0 && <span className="product-tag tag-hot">Hết hàng</span>}
             </div>
-        </div>
-
-        <div className="card-info">
-            <h4 className="product-name">{name}</h4>
-            <div className="price-row">
-                <span className="price">{price.toLocaleString()}đ</span>
+            <div className="card-info">
+                <h4>{product.name}</h4>
+                <p className="price">{product.price.toLocaleString()}đ</p>
+                <p className="rating">⭐ {product.rating}</p>
             </div>
-        </div>
-    </div>
-);
+            {/* Nếu muốn nút hành động nhanh, có thể đặt ở đây nhưng cần handle e.preventDefault() */}
+        </Link>
+    );
+};
 
 export default Products;

@@ -29,7 +29,14 @@
     background-color: #e8e6e1;
     overflow: hidden;
 }
-
+.products-page > h1 {
+    text-align: center; /* Căn giữa chữ */
+    margin-top: 50px;   /* Cách lề trên */
+    margin-bottom: 20px; /* Cách lề dưới */
+    font-family: var(--font-heading); /* Dùng font tiêu đề đã định nghĩa */
+    color: var(--primary-color); /* Dùng màu xanh rêu chủ đạo */
+    font-size: 2.5rem;
+}
 /* Tạo texture mờ cho nền (Optional) */
 .products-hero::before {
     content: "";
@@ -215,10 +222,19 @@
     display: flex;
     flex-direction: column;
 }
+a.product-card {
+    text-decoration: none; /* Bỏ gạch chân */
+    color: inherit;        /* Giữ màu chữ gốc, không bị biến thành màu xanh link */
+    display: flex;         /* Giữ layout flex */
+    flex-direction: column;
+}
 
 .product-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
+}
+.product-card img {
+    display: block;
 }
 
 .image-wrapper {
@@ -315,6 +331,45 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+/* Trong product-card */
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Nút thêm nhanh */
+.btn-quick-add {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(50px); /* Ẩn xuống dưới */
+    background: white;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-quick-add:hover {
+    background: #333;
+    color: white;
+}
+.product-card:hover .btn-quick-add {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .price {
