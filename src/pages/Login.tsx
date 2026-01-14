@@ -22,6 +22,7 @@ export default function Login({ setUser }: LoginProps) {
 
         try {
             const data = await login(email, password);
+            console.log(data);
             saveAuth(data);
             setUser(data.user);
             navigate("/");
