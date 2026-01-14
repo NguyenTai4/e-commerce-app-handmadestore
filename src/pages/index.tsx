@@ -8,4 +8,4 @@ export {default as Checkout} from "./Checkout";
 export { default as Register } from "./Register";
 export { default as ProfileUser } from "./ProfileUser";
 export { default as ProductDetail } from "./ProductDetail";
-
+export { default as AppLayout } from "./AppLayout";

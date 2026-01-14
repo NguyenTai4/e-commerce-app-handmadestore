@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getAllProducts } from "../services/productService";
 import { Product } from "../types/Product";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const Home = () => {
     const trackRef = useRef<HTMLDivElement>(null);
@@ -91,20 +92,14 @@ const Home = () => {
                     </p>
                 </div>
 
-                <div
-                    id="image-track"
-                    ref={trackRef}
-                    data-mouse-down-at="0"
-                    data-prev-percentage="0"
-                >
-                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" />
-                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" />
+                <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
+                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" alt={""}/>
                 </div>
             </div>
 
-            {/* ===== FEATURED PRODUCTS (MỚI) ===== */}
             <div className="products-section">
                 <div className="section-header">
                     <h3>Sản Phẩm Nổi Bật</h3>
@@ -122,20 +117,11 @@ const Home = () => {
                             className="product-card"
                         >
                             <div className="product-img-wrapper">
-                                <img
-                                    src={product.images}
-                                    alt={product.name}
-                                    loading="lazy"
-                                />
-
+                                <img src={product.images} alt={product.name} loading="lazy"/>
                                 <div className="action-buttons">
-                                    <button
-                                        className="btn add-to-cart"
-                                        onClick={(e) =>
-                                            handleAddToCart(e, product)
-                                        }
-                                    >
-                                        Thêm giỏ
+                                    <button className="btn add-to-cart" onClick={(e) =>
+                                            handleAddToCart(e, product)}>
+                                        Thêm vào giỏ hàng
                                     </button>
                                 </div>
                             </div>
