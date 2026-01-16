@@ -212,13 +212,13 @@
     },
     {
       "id": 22,
-      "email": "tai000@gmail.com",
-      "password": "123",
-      "fullName": "Nguyễn Hữu Tài",
+      "email": "22130246@st.hcmuaf.edu.vn",
+      "password": null,
+      "fullName": "Tân Nguyễn Văn",
       "role": "user",
-      "phone": "0112233456",
-      "address": "Bình dương",
-      "createdAt": "2026-01-03"
+      "phone": "",
+      "address": "",
+      "createdAt": "2026-01-14"
     }
   ]
 }

@@ -1,0 +1,284 @@
+
+.product-detail-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 60px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+/* --- TRẠNG THÁI LOADING / ERROR --- */
+.loading-container,
+.error-container {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.error-container a {
+    color: #27ae60;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+/* --- CỘT TRÁI: ẢNH (GALLERY) --- */
+.product-gallery {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.main-image-frame {
+    width: 100%;
+    height: 500px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hoặc 'contain' nếu muốn thấy toàn bộ ảnh */
+    transition: transform 0.5s ease;
+}
+
+.main-image-frame:hover img {
+    transform: scale(1.05);
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 5px; /* Để scrollbar không che ảnh */
+}
+
+.thumbnail-list img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.thumbnail-list img:hover,
+.thumbnail-list img.active {
+    opacity: 1;
+    border-color: #27ae60; /* Màu chủ đạo */
+    transform: translateY(-2px);
+}
+
+/* --- CỘT PHẢI: THÔNG TIN (INFO) --- */
+.product-info {
+    flex: 1;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.breadcrumb a {
+    color: #555;
+    text-decoration: none;
+}
+
+.product-name {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.product-meta {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.rating {
+    color: #f1c40f; /* Màu vàng */
+    font-weight: bold;
+}
+
+.stock-status {
+    font-weight: 600;
+}
+.stock-status.in-stock { color: #27ae60; }
+.stock-status.out-stock { color: #c0392b; }
+
+.price-box {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.current-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d35400; /* Màu cam đất */
+}
+
+.description-box {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.material-info {
+    margin-top: 10px;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+/* --- ACTION: SỐ LƯỢNG & NÚT MUA --- */
+.action-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.quantity-control {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.quantity-control button {
+    width: 40px;
+    border: none;
+    background: #f9f9f9;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.quantity-control button:hover {
+    background: #eee;
+}
+
+.quantity-control input {
+    width: 50px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    outline: none;
+}
+
+.btn-add-cart {
+    flex: 1;
+    height: 50px;
+    border: none;
+    background: #333;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-add-cart:hover:not(:disabled) {
+    background: #27ae60;
+    transform: translateY(-2px);
+}
+
+.btn-add-cart:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- TABS (Mô tả / Chính sách) --- */
+.extra-info-tabs {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.tab-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+    padding-bottom: 10px;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #95a5a6;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    color: #333;
+}
+
+.tab-btn.active {
+    color: #27ae60;
+    border-bottom-color: #27ae60;
+}
+
+.tab-content {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .main-image-frame {
+        height: 350px;
+    }
+
+    .action-group {
+        flex-direction: column;
+    }
+
+    .quantity-control {
+        width: 100%;
+        justify-content: center;
+    }
+}

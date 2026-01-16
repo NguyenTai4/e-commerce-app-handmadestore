@@ -43,7 +43,9 @@ export async function login({ email, password }) {
             id: user.id,
             fullName : user.fullName,
             email: user.email,
-            role: user.role
+            role: user.role,
+            phone: user.phone,
+            address: user.address
         }
     };
 }
@@ -65,9 +67,9 @@ export async function register({email, password, fullName, phone, address }) {
         id: usersData.users.length
             ? Math.max(...usersData.users.map(u => u.id)) + 1
             : 1,
-        email,
-        password, // fake api → chưa hash
-        fullName,
+        email: email,
+        password: password, // fake api → chưa hash
+        fullName: fullName,
         role: "user",
         phone: phone || "",
         address: address || "",
@@ -94,6 +96,87 @@ export async function register({email, password, fullName, phone, address }) {
             email: newUser.email,
             fullName: newUser.fullName,
             role: newUser.role,
+            phone: newUser.phone,
+            address: newUser.address
         }
     };
+}
+
+export async function loginWithGoogleEmail({ email, fullName }) {
+    await delay();
+
+    let user = usersData.users.find(u => u.email === email);
+
+    // ❌ chưa tồn tại → tạo mới
+    if (!user) {
+        user = {
+            id: usersData.users.length
+                ? Math.max(...usersData.users.map(u => u.id)) + 1
+                : 1,
+            email: email,
+            password: null, // fake api → chưa hash
+            fullName: fullName,
+            role: "user",
+            phone: "",
+            address: "",
+            createdAt: new Date().toISOString().slice(0, 10)
+        };
+
+        usersData.users.push(user);
+
+        fs.writeFileSync(
+            USERS_FILE,
+            JSON.stringify(usersData, null, 2),
+            "utf-8"
+        );
+    }
+
+    // fake token
+    const token = "fake-jwt-token-" + user.id;
+
+    return {
+        accessToken: token,
+        user: {
+            id: user.id,
+            fullName: user.fullName,
+            email: user.email,
+            role: user.role,
+            phone: user.phone,
+            address: user.address
+        }
+    };
+}
+
+export async function updateUser(id, updateData) {
+    await delay();
+
+    // 1. Tìm vị trí user trong mảng
+    const index = usersData.users.findIndex(u => u.id === Number(id));
+    if (index === -1) {
+        throw { status: 404, message: "User not found" };
+    }
+
+    // 2. Cập nhật dữ liệu (Giữ lại các trường quan trọng không cho sửa như email, id, role...)
+    const currentUser = usersData.users[index];
+    const updatedUser = {
+        ...currentUser,
+        fullName: updateData.fullName || currentUser.fullName,
+        phone: updateData.phone || currentUser.phone,
+        address: updateData.address || currentUser.address,
+        // Không cho phép update password, email, role ở đây để bảo mật
+    };
+
+    // 3. Cập nhật vào mảng trong bộ nhớ
+    usersData.users[index] = updatedUser;
+
+    // 4. Ghi đè lại file users.json (Persistence)
+    fs.writeFileSync(
+        USERS_FILE,
+        JSON.stringify(usersData, null, 2),
+        "utf-8"
+    );
+
+    // 5. Trả về thông tin user mới (đã loại bỏ password nếu cần thiết)
+    const { password, ...userWithoutPass } = updatedUser;
+    return userWithoutPass;
 }
