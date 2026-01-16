@@ -3,6 +3,7 @@ import { login } from "../services/authService.js";
 import { saveAuth } from "../utils/authStorage.js";
 import { useNavigate } from "react-router-dom";
 import { User } from "../types/user";
+import { loginWithGoogle } from "../services/googleAuthService";
 
 interface LoginProps {
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
@@ -74,7 +75,7 @@ export default function Login({ setUser }: LoginProps) {
                         <button
                             type="button"
                             className="social-btn google"
-                            onClick={() => alert("Google login (demo)")}>
+                            onClick={loginWithGoogle}>
                             <span>Đăng nhập với Google</span>
                             <img src="/icons/social/google.png" alt="" />
                         </button>

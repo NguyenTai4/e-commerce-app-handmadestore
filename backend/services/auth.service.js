@@ -67,9 +67,9 @@ export async function register({email, password, fullName, phone, address }) {
         id: usersData.users.length
             ? Math.max(...usersData.users.map(u => u.id)) + 1
             : 1,
-        email,
-        password, // fake api → chưa hash
-        fullName,
+        email: email,
+        password: password, // fake api → chưa hash
+        fullName: fullName,
         role: "user",
         phone: phone || "",
         address: address || "",
@@ -96,9 +96,57 @@ export async function register({email, password, fullName, phone, address }) {
             email: newUser.email,
             fullName: newUser.fullName,
             role: newUser.role,
+            phone: newUser.phone,
+            address: newUser.address
         }
     };
 }
+
+export async function loginWithGoogleEmail({ email, fullName }) {
+    await delay();
+
+    let user = usersData.users.find(u => u.email === email);
+
+    // ❌ chưa tồn tại → tạo mới
+    if (!user) {
+        user = {
+            id: usersData.users.length
+                ? Math.max(...usersData.users.map(u => u.id)) + 1
+                : 1,
+            email: email,
+            password: null, // fake api → chưa hash
+            fullName: fullName,
+            role: "user",
+            phone: "",
+            address: "",
+            createdAt: new Date().toISOString().slice(0, 10)
+        };
+
+        usersData.users.push(user);
+
+        fs.writeFileSync(
+            USERS_FILE,
+            JSON.stringify(usersData, null, 2),
+            "utf-8"
+        );
+    }
+
+    // fake token
+    const token = "fake-jwt-token-" + user.id;
+
+    return {
+        accessToken: token,
+        user: {
+            id: user.id,
+            fullName: user.fullName,
+            email: user.email,
+            role: user.role,
+            phone: user.phone,
+            address: user.address
+        }
+    };
+}
+
 export async function updateUser(id, updateData) {
     await delay();
 
