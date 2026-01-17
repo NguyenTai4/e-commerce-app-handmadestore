@@ -80,6 +80,7 @@ export const orderService = {
             items: orderItems,
             totalAmount: calculatedTotal,
             shippingInfo: locateShipDetail,
+            shippingFee: locateShipDetail.shippingFee || 0,
             status: "pending",
             createdAt: new Date().toISOString()
         };

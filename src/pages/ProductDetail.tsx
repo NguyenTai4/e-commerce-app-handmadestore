@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import Footer from "./Footer";
-import { getProductById } from "../services/productService";
-import { Product } from "../types/Product";
+import {getProductById} from "../services/productService";
+import {Product} from "../types/Product";
+import {cartService} from "../services/cartService";
 
 const ProductDetail: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
-
+    const {id} = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [product, setProduct] = useState<Product | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -39,7 +40,28 @@ const ProductDetail: React.FC = () => {
         fetchDetail();
         window.scrollTo(0, 0);
     }, [id]);
+    const handleAddToCart = async () => {
+        if (!product) return;
 
+        try {
+            // Gọi API thêm vào giỏ với số lượng đang chọn (quantity)
+            await cartService.addToCart(product.id, quantity);
+
+            alert(`✅ Đã thêm ${quantity} sản phẩm "${product.name}" vào giỏ hàng!`);
+        } catch (error: any) {
+            console.error("Add to cart error:", error);
+
+            // Xử lý lỗi chưa đăng nhập
+            if (error.message === "No token" || error.message === "Unauthorized") {
+                const confirmLogin = window.confirm("Bạn cần đăng nhập để mua hàng. Đi tới trang đăng nhập?");
+                if (confirmLogin) {
+                    navigate("/login");
+                }
+            } else {
+                alert("❌ Lỗi: " + (error.message || "Không thể thêm vào giỏ hàng"));
+            }
+        }
+    };
     if (isLoading) {
         return <div className="loading-container"><h3>⏳ Đang tải chi tiết sản phẩm...</h3></div>;
     }
@@ -71,7 +93,8 @@ const ProductDetail: React.FC = () => {
                 {/* CỘT PHẢI: INFO */}
                 <div className="product-info">
                     <div className="breadcrumb">
-                        <Link to="/">Trang chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
+                        <Link to="/">Trang
+                            chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
                     </div>
 
                     <h1 className="product-name">{product.name}</h1>
@@ -95,12 +118,13 @@ const ProductDetail: React.FC = () => {
                     <div className="action-group">
                         <div className="quantity-control">
                             <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
-                            <input readOnly value={quantity} />
+                            <input readOnly value={quantity}/>
                             <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}>+</button>
                         </div>
 
                         <button
                             className="btn-add-cart"
+                            onClick={handleAddToCart}
                             disabled={product.stock === 0}
                         >
                             {product.stock > 0
@@ -130,7 +154,7 @@ const ProductDetail: React.FC = () => {
                             {activeTab === "desc" ? (
                                 <>
                                     <p>Sản phẩm được chế tác thủ công 100% từ các nghệ nhân lành nghề.</p>
-                                    <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                                    <ul style={{paddingLeft: "20px", marginTop: "10px"}}>
                                         <li>Chất liệu thân thiện với môi trường.</li>
                                         <li>Màu sắc tự nhiên, bền đẹp theo thời gian.</li>
                                         <li>Thích hợp làm quà tặng hoặc trang trí nhà cửa.</li>
@@ -146,7 +170,7 @@ const ProductDetail: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };

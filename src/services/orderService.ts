@@ -7,10 +7,11 @@ export interface ShippingInfo {
     phone: string;
     email: string;
     address: string;
+    shippingFee?: number;
 }
 
 export const orderService = {
-    async createOrder(info: ShippingInfo) {
+    async createOrder(orderInfo: ShippingInfo) {
         const auth = getAuth();
         const token = auth?.accessToken;
 
@@ -20,14 +21,14 @@ export const orderService = {
                 "Content-Type": "application/json",
                 "Authorization": token ? `Bearer ${token}` : ""
             },
-            body: JSON.stringify(info)
+            body: JSON.stringify(orderInfo)
         });
         const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.message || "Lỗi đặt hàng");
         }
-
+        window.dispatchEvent(new Event("cartChange"));
         return data;
     }
 };

@@ -131,6 +131,8 @@
 .input-wrapper svg {
     position: absolute;
     left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--color-text-secondary);
     pointer-events: none;
     z-index: 1;
@@ -138,12 +140,14 @@
 
 .input-wrapper.top-align svg {
     top: 14px;
+    transform: none;
 }
 
 .input-wrapper input,
 .input-wrapper textarea {
     width: 100%;
-    padding: 12px 12px 12px 42px;
+    padding: 12px 12px 12px 60px;
+
     border-radius: var(--radius-btn);
     border: 1px solid var(--color-border);
     font-family: var(--font-body);
@@ -522,7 +526,7 @@
 
 .input-wrapper select {
     width: 100%;
-    padding: 12px 40px 12px 42px;
+    padding: 12px 40px 12px 60px;
     border-radius: var(--radius-btn);
     border: 1px solid var(--color-border);
     font-family: var(--font-body);
@@ -554,7 +558,9 @@
     padding: 10px;
 }
 
+
 .input-wrapper select:invalid,
 .input-wrapper select option[value=""] {
     color: var(--color-text-secondary);
 }
+

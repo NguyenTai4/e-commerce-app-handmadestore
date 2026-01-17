@@ -191,6 +191,171 @@
       },
       "status": "pending",
       "createdAt": "2026-01-06T05:38:51.921Z"
+    },
+    {
+      "id": 1768622255562,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 5,
+          "name": "Đèn ngủ gỗ handmade",
+          "price": 540000,
+          "image": "/images/wood/wood5.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 540000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "số 111 đường 111, Phường Tân Thới Nhất, Quận 12, Hồ Chí Minh",
+        "shippingFee": 31501
+      },
+      "shippingFee": 31501,
+      "status": "pending",
+      "createdAt": "2026-01-17T03:57:35.562Z"
+    },
+    {
+      "id": 1768625653373,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 5,
+          "name": "Đèn ngủ gỗ handmade",
+          "price": 540000,
+          "image": "/images/wood/wood5.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 540000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "10101010, Xã Vĩnh Phú Tây, Huyện Phước Long, Bạc Liêu",
+        "shippingFee": 36501
+      },
+      "shippingFee": 36501,
+      "status": "pending",
+      "createdAt": "2026-01-17T04:54:13.373Z"
+    },
+    {
+      "id": 1768645632705,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 5,
+          "name": "Đèn ngủ gỗ handmade",
+          "price": 540000,
+          "image": "/images/wood/wood5.jpg",
+          "quantity": 1
+        },
+        {
+          "productId": 1,
+          "name": "Kệ gỗ treo tường tối giản",
+          "price": 420000,
+          "image": "/images/wood/wood1.jpg",
+          "quantity": 1
+        },
+        {
+          "productId": 25,
+          "name": "Tranh gỗ khắc tay",
+          "price": 980000,
+          "image": "/images/wood/wood14.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 1940000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "10000, Côn Đảo, Huyện đảo Côn Đảo, Bà Rịa - Vũng Tàu",
+        "shippingFee": 46201
+      },
+      "shippingFee": 46201,
+      "status": "pending",
+      "createdAt": "2026-01-17T10:27:12.705Z"
+    },
+    {
+      "id": 1768645713527,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 1,
+          "name": "Kệ gỗ treo tường tối giản",
+          "price": 420000,
+          "image": "/images/wood/wood1.jpg",
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "name": "Bàn trà gỗ nhỏ",
+          "price": 850000,
+          "image": "/images/wood/wood2.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 1270000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "01900101, Xã Nam Dương, Huyện Lục Ngạn, Bắc Giang",
+        "shippingFee": 47351
+      },
+      "shippingFee": 47351,
+      "status": "pending",
+      "createdAt": "2026-01-17T10:28:33.527Z"
+    },
+    {
+      "id": 1768646587071,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 1,
+          "name": "Kệ gỗ treo tường tối giản",
+          "price": 420000,
+          "image": "/images/wood/wood1.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 420000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "1000, Xã Đông Phong, Huyện Yên Phong, Bắc Ninh",
+        "shippingFee": 34000
+      },
+      "shippingFee": 34000,
+      "status": "pending",
+      "createdAt": "2026-01-17T10:43:07.071Z"
+    },
+    {
+      "id": 1768646604678,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 1,
+          "name": "Kệ gỗ treo tường tối giản",
+          "price": 420000,
+          "image": "/images/wood/wood1.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 420000,
+      "shippingInfo": {
+        "fullName": "Nguyễn Tài",
+        "phone": "0912345678",
+        "email": "huutai0977@gmail.com",
+        "address": "1000, Phường Nham Biền, Thành phố Bắc Giang, Bắc Giang",
+        "shippingFee": 34000
+      },
+      "shippingFee": 34000,
+      "status": "pending",
+      "createdAt": "2026-01-17T10:43:24.678Z"
     }
   ]
 }

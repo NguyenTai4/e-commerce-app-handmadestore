@@ -143,7 +143,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         ? product.images[0]
         : "https://via.placeholder.com/300";
     return (
-        <Link to={`/product/${product.slug}`} className="product-card">
+        <Link to={`/product/${product.id}`} className="product-card">
             <div className="image-wrapper">
                 <img src={imageUrl} alt={product.name} />
                 {/* Tag sản phẩm (nếu có logic) */}

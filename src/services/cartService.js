@@ -48,10 +48,36 @@ export const cartService = {
             if (!response.ok) {
                 throw new Error("Failed to update cart");
             }
-
+            window.dispatchEvent(new Event("cartChange"));
             return await response.json();
         } catch (error) {
             console.error("Update Cart Error:", error);
+            throw error;
+        }
+    },
+
+    async addToCart(productId, quantity = 1) {
+        try {
+            const headers = getHeaders();
+
+            if (!headers.Authorization) {
+                throw new Error("No token");
+            }
+
+            const response = await fetch(`${API_URL}/carts/add`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({productId, quantity}),
+            });
+
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.message || "Lỗi thêm vào giỏ hàng");
+            }
+            window.dispatchEvent(new Event("cartChange"));
+            return await response.json();
+        } catch (error) {
+            console.error("Add to Cart Error:", error);
             throw error;
         }
     }

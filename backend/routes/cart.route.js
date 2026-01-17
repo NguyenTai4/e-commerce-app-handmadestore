@@ -18,7 +18,23 @@ router.get("/", async (req, res) => {
         res.status(500).json({message: "Lỗi server khi lấy giỏ hàng"});
     }
 });
+router.post("/add", async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const {productId, quantity} = req.body;
 
+        if (!productId) {
+            return res.status(400).json({message: "Thiếu productId"});
+        }
+
+        const updatedCart = await cartService.addToCart(userId, productId, quantity || 1);
+
+        res.status(200).json(updatedCart);
+    } catch (error) {
+        console.error("Add to Cart Error:", error);
+        res.status(500).json({message: "Lỗi server khi thêm vào giỏ"});
+    }
+});
 router.patch("/", async (req, res) => {
     try {
         const userId = req.user.id;
