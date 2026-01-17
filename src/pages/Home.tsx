@@ -93,10 +93,10 @@ const Home = () => {
                 </div>
 
                 <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
-                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" alt={""}/>
-                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" alt={""}/>
-                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" alt={""}/>
-                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" alt={""}/>
+                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" draggable="false" alt={""} />
+                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800" draggable="false" alt={""} />
+                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800" draggable="false" alt={""} />
+                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800" draggable="false" alt={""} />
                 </div>
             </div>
 
@@ -117,10 +117,10 @@ const Home = () => {
                             className="product-card"
                         >
                             <div className="product-img-wrapper">
-                                <img src={product.images} alt={product.name} loading="lazy"/>
+                                <img src={product.images} alt={product.name} loading="lazy" />
                                 <div className="action-buttons">
                                     <button className="btn add-to-cart" onClick={(e) =>
-                                            handleAddToCart(e, product)}>
+                                        handleAddToCart(e, product)}>
                                         Thêm vào giỏ hàng
                                     </button>
                                 </div>
@@ -134,6 +134,41 @@ const Home = () => {
                             </div>
                         </Link>
                     ))}
+                </div>
+            </div>
+
+            {/* ===== DISCOUNT PROGRAM SECTION ===== */}
+            <div className="discount-section">
+                <div className="discount-content">
+                    <h5>Ưu Đãi Có Hạn</h5>
+                    <h2>Siêu Sale Mùa Hè <br /> Giảm Tới 50%</h2>
+                    <p>Đừng bỏ lỡ cơ hội sở hữu những món đồ thủ công tinh tế với mức giá tốt nhất năm.</p>
+
+                    <div className="countdown-timer">
+                        <div className="time-box">
+                            <span>02</span>
+                            <small>Ngày</small>
+                        </div>
+                        <div className="time-box">
+                            <span>12</span>
+                            <small>Giờ</small>
+                        </div>
+                        <div className="time-box">
+                            <span>45</span>
+                            <small>Phút</small>
+                        </div>
+                        <div className="time-box">
+                            <span>30</span>
+                            <small>Giây</small>
+                        </div>
+                    </div>
+
+                    <Link to="/products" className="btn buy-now discount-btn">
+                        Săn Sale Ngay
+                    </Link>
+                </div>
+                <div className="discount-image">
+                    <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800" alt="Discount Promotion" className="floating-img" />
                 </div>
             </div>
 

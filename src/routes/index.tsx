@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Home, Products, Cart, Login, Register, Checkout,ProfileUser, ProductDetail, AppLayout} from "../pages";
+import {Home, Products, Cart, Login, Register, Checkout,ProfileUser, ProductDetail, AppLayout,Contact,About} from "../pages";
 import {getAuth} from "../utils/authStorage";
 import {useEffect, useState} from "react";
 import {User} from "../types/user";
@@ -30,6 +30,8 @@ const AppRouter = () => {
                     <Route path="/login" element={<Login setUser={setUser} />} />
                     <Route path="/register" element={<Register setUser={setUser} />} />
                     <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/contact" element={<Contact/>} />
+                    <Route path="/about" element={<About/>} />
                 </Route>
 
             </Routes>

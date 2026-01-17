@@ -41,7 +41,7 @@ const ProductDetail: React.FC = () => {
     }, [id]);
 
     if (isLoading) {
-        return <div className="loading-container"><h3>⏳ Đang tải chi tiết sản phẩm...</h3></div>;
+        return <div className="loading-container"><h3> Đang tải chi tiết sản phẩm...</h3></div>;
     }
 
     if (error || !product) {
@@ -89,7 +89,7 @@ const ProductDetail: React.FC = () => {
 
                     <div className="description-box">
                         <p>{product.description}</p>
-                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
+                        <p className="material-info"><strong>Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
                     <div className="action-group">
@@ -104,7 +104,7 @@ const ProductDetail: React.FC = () => {
                             disabled={product.stock === 0}
                         >
                             {product.stock > 0
-                                ? `THÊM VÀO GIỎ - ${(product.price * quantity).toLocaleString()}đ`
+                                ? `THÊM VÀO GIỎ  ${(product.price * quantity).toLocaleString()}đ`
                                 : "HẾT HÀNG"
                             }
                         </button>
@@ -138,15 +138,54 @@ const ProductDetail: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
-                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
+                                    <p>Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p>Bảo hành đường may, mối nối trong 3 tháng.</p>
                                 </>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/*COMMENT*/}
+            <div className="product-comments">
+                <h2 className="comment-title"> Đánh giá sản phẩm</h2>
+
+                {/*Form comment*/}
+                <div className="comment-form">
+                    <div className="comment-avatar">T</div>
+                    <textarea
+                        placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."
+                        disabled
+                    />
+                    <button disabled>Gửi đánh giá</button>
+                </div>
+
+                {/*Danh sách comment mẫu*/}
+                <div className="comment-list">
+                    <div className="comment-item">
+                        <div className="comment-avatar">A</div>
+                        <div className="comment-content">
+                            <div className="comment-header">
+                                <strong>Anh Minh</strong>
+                                <span className="comment-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p>Sản phẩm rất đẹp, đóng gói cẩn thận, giao hàng nhanh </p>
+                        </div>
+                    </div>
+
+                    <div className="comment-item">
+                        <div className="comment-avatar">L</div>
+                        <div className="comment-content">
+                            <div className="comment-header">
+                                <strong>Lan Hương</strong>
+                                <span className="comment-rating">⭐⭐⭐⭐</span>
+                            </div>
+                            <p>Màu sắc giống hình, chất liệu tốt, sẽ ủng hộ thêm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     );
 };
