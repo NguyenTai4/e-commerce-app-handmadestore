@@ -1,32 +1,14 @@
 import React, {useEffect, useState} from "react";
-// Import service JS
 import {cartService} from "../services/cartService";
 import {getAuth} from "../utils/authStorage";
 import Navigate, {useNavigate} from "react-router-dom";
-import checkout from "./Checkout";
-
-// --- 1. Interfaces ---
-interface CartItem {
-    productId: number;
-    name: string;
-    price: number;
-    image: string;
-    quantity: number;
-}
-
-interface CartResponse {
-    items: CartItem[];
-    total?: number;
-}
+import {CartItem, CartResponse} from "../types/Cart";
 
 const Cart: React.FC = () => {
     const navigate = useNavigate();
-    // --- 2. State & Logic ---
     const [items, setItems] = useState<CartItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-
-    // Load dữ liệu
     useEffect(() => {
         const fetchCart = async () => {
             const auth = getAuth();
@@ -50,7 +32,6 @@ const Cart: React.FC = () => {
         fetchCart();
     }, []);
 
-    // Cập nhật dữ liệu
     const updateCartData = async (newItems: CartItem[]) => {
         setItems(newItems);
         try {
@@ -61,7 +42,6 @@ const Cart: React.FC = () => {
         }
     };
 
-    // Các hàm xử lý sự kiện
     const handleIncrease = (productId: number) => {
         const newItems = items.map((item) =>
             item.productId === productId
@@ -88,21 +68,17 @@ const Cart: React.FC = () => {
         updateCartData(newItems);
     };
 
-    // Tính tổng tiền
     const subTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     // Format tiền tệ
     const formatCurrency = (amount: number) =>
         new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(amount);
 
-    // --- 3. RENDER UI (CẬP NHẬT THEO CSS MỚI) ---
-
     if (loading) return <div className="cart-page-container" style={{textAlign: 'center'}}>Đang tải dữ liệu...</div>;
     if (error) return <div className="cart-page-container" style={{textAlign: 'center', color: 'red'}}>{error}</div>;
 
     return (
         <div className="cart-page-container">
-            {/* Header */}
             <div className="cart-header">
                 <h1>Giỏ hàng của bạn</h1>
                 <p>Bạn đang có {items.length} sản phẩm trong giỏ hàng</p>
@@ -120,18 +96,14 @@ const Cart: React.FC = () => {
                 </div>
             ) : (
                 <div className="cart-layout">
-                    {/* Cột trái: Danh sách sản phẩm */}
                     <div className="cart-items-column">
                         {items.map((item) => (
                             <div className="cart-item-card" key={item.productId}>
-                                {/* Ảnh sản phẩm */}
                                 <div className="item-image-wrapper">
                                     <img src={item.image} alt={item.name}/>
                                 </div>
 
-                                {/* Chi tiết sản phẩm */}
                                 <div className="item-details">
-                                    {/* Tên & Nút xóa */}
                                     <div className="item-info-top">
                                         <div>
                                             <h3>{item.name}</h3>
@@ -142,7 +114,6 @@ const Cart: React.FC = () => {
                                             onClick={() => handleRemove(item.productId)}
                                             title="Xóa sản phẩm"
                                         >
-                                            {/* Icon thùng rác SVG đơn giản */}
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                                  stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                                  strokeLinejoin="round">
@@ -153,7 +124,6 @@ const Cart: React.FC = () => {
                                         </button>
                                     </div>
 
-                                    {/* Giá, Số lượng, Thành tiền */}
                                     <div className="item-actions-bottom">
                                         <div className="item-price">
                                             {formatCurrency(item.price)}
@@ -189,7 +159,6 @@ const Cart: React.FC = () => {
                         ))}
                     </div>
 
-                    {/* Cột phải: Tổng kết đơn hàng (Sticky) */}
                     <div className="cart-summary-column">
                         <div className="cart-summary-card">
                             <h2>Tóm tắt đơn hàng</h2>
@@ -197,12 +166,6 @@ const Cart: React.FC = () => {
                             <div className="summary-row">
                                 <span>Tạm tính</span>
                                 <span>{formatCurrency(subTotal)}</span>
-                            </div>
-
-                            {/* Bạn có thể thêm dòng phí vận chuyển ở đây nếu muốn logic tính toán thêm */}
-                            <div className="summary-row">
-                                <span>Phí vận chuyển</span>
-                                <span>Miễn phí</span>
                             </div>
 
                             <div className="summary-divider"></div>
@@ -214,7 +177,14 @@ const Cart: React.FC = () => {
 
                             <p className="tax-note">(Đã bao gồm VAT nếu có)</p>
 
-                            <button onClick={() => (navigate("/checkout"))} className="checkout-btn">
+                            <button onClick={() => {
+                                navigate("/checkout", {
+                                    state: {
+                                        items: items,
+                                        total: subTotal
+                                    }
+                                });
+                            }} className="checkout-btn">
                                 Tiến hành thanh toán
                             </button>
 

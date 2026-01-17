@@ -67,32 +67,32 @@ export const getWards = async (districtId) => {
 // ===============================
 // TEST calculateShippingFee ONLY
 // ===============================
-if (process.argv[1]?.includes("ghnAPIService.js")) {
-    (async () => {
-        try {
-            console.log("=== TEST calculateShippingFee ===");
-
-            const payload = {
-                to_district_id: 1448,
-                to_ward_code: "20614",
-                service_type_id: 2,
-                weight: 500,
-                length: 20,
-                width: 15,
-                height: 10,
-            };
-
-            const result = await calculateShippingFee(payload);
-
-            console.log("Shipping fee result:");
-            console.log(JSON.stringify(result, null, 2));
-
-            console.log("=== TEST SUCCESS ===");
-        } catch (error) {
-            console.error(
-                "TEST ERROR:",
-                error.response?.data || error.message
-            );
-        }
-    })();
-}
+// if (process.argv[1]?.includes("ghnAPIService.js")) {
+//     (async () => {
+//         try {
+//             console.log("=== TEST calculateShippingFee ===");
+//
+//             const payload = {
+//                 to_district_id: 1448,
+//                 to_ward_code: "20614",
+//                 service_type_id: 2,
+//                 weight: 500,
+//                 length: 20,
+//                 width: 15,
+//                 height: 10,
+//             };
+//
+//             const result = await calculateShippingFee(payload);
+//
+//             console.log("Shipping fee result:");
+//             console.log(JSON.stringify(result, null, 2));
+//
+//             console.log("=== TEST SUCCESS ===");
+//         } catch (error) {
+//             console.error(
+//                 "TEST ERROR:",
+//                 error.response?.data || error.message
+//             );
+//         }
+//     })();
+// }

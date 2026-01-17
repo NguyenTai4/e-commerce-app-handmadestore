@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import Footer from "./Footer";
-import { getProductById } from "../services/productService";
-import { Product } from "../types/Product";
+import {getProductById} from "../services/productService";
+import {Product} from "../types/Product";
+import {cartService} from "../services/cartService";
 
 const ProductDetail: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
-
+    const {id} = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [product, setProduct] = useState<Product | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -39,9 +40,30 @@ const ProductDetail: React.FC = () => {
         fetchDetail();
         window.scrollTo(0, 0);
     }, [id]);
+    const handleAddToCart = async () => {
+        if (!product) return;
 
+        try {
+            // Gọi API thêm vào giỏ với số lượng đang chọn (quantity)
+            await cartService.addToCart(product.id, quantity);
+
+            alert(`✅ Đã thêm ${quantity} sản phẩm "${product.name}" vào giỏ hàng!`);
+        } catch (error: any) {
+            console.error("Add to cart error:", error);
+
+            // Xử lý lỗi chưa đăng nhập
+            if (error.message === "No token" || error.message === "Unauthorized") {
+                const confirmLogin = window.confirm("Bạn cần đăng nhập để mua hàng. Đi tới trang đăng nhập?");
+                if (confirmLogin) {
+                    navigate("/login");
+                }
+            } else {
+                alert("❌ Lỗi: " + (error.message || "Không thể thêm vào giỏ hàng"));
+            }
+        }
+    };
     if (isLoading) {
-        return <div className="loading-container"><h3> Đang tải chi tiết sản phẩm...</h3></div>;
+        return <div className="loading-container"><h3>⏳ Đang tải chi tiết sản phẩm...</h3></div>;
     }
 
     if (error || !product) {
@@ -71,7 +93,8 @@ const ProductDetail: React.FC = () => {
                 {/* CỘT PHẢI: INFO */}
                 <div className="product-info">
                     <div className="breadcrumb">
-                        <Link to="/">Trang chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
+                        <Link to="/">Trang
+                            chủ</Link> / <span>{product.category || "Sản phẩm"}</span> / <strong>{product.name}</strong>
                     </div>
 
                     <h1 className="product-name">{product.name}</h1>
@@ -89,22 +112,23 @@ const ProductDetail: React.FC = () => {
 
                     <div className="description-box">
                         <p>{product.description}</p>
-                        <p className="material-info"><strong>Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
+                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
                     <div className="action-group">
                         <div className="quantity-control">
                             <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
-                            <input readOnly value={quantity} />
+                            <input readOnly value={quantity}/>
                             <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}>+</button>
                         </div>
 
                         <button
                             className="btn-add-cart"
+                            onClick={handleAddToCart}
                             disabled={product.stock === 0}
                         >
                             {product.stock > 0
-                                ? `THÊM VÀO GIỎ  ${(product.price * quantity).toLocaleString()}đ`
+                                ? `THÊM VÀO GIỎ - ${(product.price * quantity).toLocaleString()}đ`
                                 : "HẾT HÀNG"
                             }
                         </button>
@@ -130,7 +154,7 @@ const ProductDetail: React.FC = () => {
                             {activeTab === "desc" ? (
                                 <>
                                     <p>Sản phẩm được chế tác thủ công 100% từ các nghệ nhân lành nghề.</p>
-                                    <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                                    <ul style={{paddingLeft: "20px", marginTop: "10px"}}>
                                         <li>Chất liệu thân thiện với môi trường.</li>
                                         <li>Màu sắc tự nhiên, bền đẹp theo thời gian.</li>
                                         <li>Thích hợp làm quà tặng hoặc trang trí nhà cửa.</li>
@@ -138,54 +162,15 @@ const ProductDetail: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <p>Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
-                                    <p>Bảo hành đường may, mối nối trong 3 tháng.</p>
+                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
                                 </>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-            {/*COMMENT*/}
-            <div className="product-comments">
-                <h2 className="comment-title"> Đánh giá sản phẩm</h2>
-
-                {/*Form comment*/}
-                <div className="comment-form">
-                    <div className="comment-avatar">T</div>
-                    <textarea
-                        placeholder="Chia sẻ cảm nhận của bạn về sản phẩm..."
-                        disabled
-                    />
-                    <button disabled>Gửi đánh giá</button>
-                </div>
-
-                {/*Danh sách comment mẫu*/}
-                <div className="comment-list">
-                    <div className="comment-item">
-                        <div className="comment-avatar">A</div>
-                        <div className="comment-content">
-                            <div className="comment-header">
-                                <strong>Anh Minh</strong>
-                                <span className="comment-rating">⭐⭐⭐⭐⭐</span>
-                            </div>
-                            <p>Sản phẩm rất đẹp, đóng gói cẩn thận, giao hàng nhanh </p>
-                        </div>
-                    </div>
-
-                    <div className="comment-item">
-                        <div className="comment-avatar">L</div>
-                        <div className="comment-content">
-                            <div className="comment-header">
-                                <strong>Lan Hương</strong>
-                                <span className="comment-rating">⭐⭐⭐⭐</span>
-                            </div>
-                            <p>Màu sắc giống hình, chất liệu tốt, sẽ ủng hộ thêm.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <Footer/>
         </>
     );
 };
