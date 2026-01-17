@@ -141,7 +141,7 @@ const Home = () => {
                             className="product-card"
                         >
                             <div className="product-img-wrapper">
-                                <img src={product.images} alt={product.name} loading="lazy"/>
+                                <img src={product.image} alt={product.name} loading="lazy"/>
                                 <div className="action-buttons">
                                     <button className="btn add-to-cart" onClick={(e) =>
                                         handleAddToCart(e, product)}>

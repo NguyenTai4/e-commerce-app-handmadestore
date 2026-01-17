@@ -60,7 +60,7 @@ const Header = ({user, setUser}: HeaderProps) => {
                 {/*Logo*/}
                 <Link to="/" className="logo">
                     <img
-                        src="../../public/img/logo.png"
+                        src="/img/logo.png"
                         className="logo-image"
                     />
                 </Link>
