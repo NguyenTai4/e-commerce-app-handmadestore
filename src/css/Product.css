@@ -427,3 +427,7 @@ a.product-card {
     .card-info { padding: 10px; }
     .product-name { font-size: 0.9rem; }
 }
+
+.loading{
+    min-height: 60vh;
+}

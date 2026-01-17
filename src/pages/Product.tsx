@@ -143,7 +143,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         ? product.images[0]
         : "https://via.placeholder.com/300";
     return (
-        <Link to={`/product/${product.slug}`} className="product-card">
+        <Link to={`/product/${product.id}`} className="product-card">
             <div className="image-wrapper">
                 <img src={imageUrl} alt={product.name} />
                 {/* Tag sản phẩm (nếu có logic) */}
@@ -154,7 +154,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <p className="price">{product.price.toLocaleString()}đ</p>
                 <p className="rating">⭐ {product.rating}</p>
             </div>
-            {/* Nếu muốn nút hành động nhanh, có thể đặt ở đây nhưng cần handle e.preventDefault() */}
         </Link>
     );
 };

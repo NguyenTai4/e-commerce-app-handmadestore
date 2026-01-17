@@ -1,18 +1,19 @@
     /* Tổng quan Header */
     .header {
         background-color: #ffffff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         padding: 0 20px;
-        height: 70px;
         display: flex;
         align-items: center;
         position: sticky;
         top: 0;
         z-index: 1000;
+        height: 75px;
+        background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
     }
 
     .header-container {
-        max-width: 1200px;
+        max-width: 1280px;
         width: 100%;
         margin: 0 auto;
         display: flex;
@@ -21,30 +22,16 @@
     }
 
     /* Logo */
-    /* Logo container */
     .logo {
         display: flex;
         align-items: center;
-        text-decoration: none;
-        color: #2c3e50;
-        gap: 12px; /* Tăng khoảng cách giữa logo và chữ */
-        height: 100%; /* Đảm bảo thẻ Link cao bằng header */
+        height: 100%;
     }
 
-    /* Class mới cho ảnh Logo */
     .logo-image {
         height: 50px;
         width: auto;
         object-fit: contain;
-    }
-
-    /* Chỉnh lại font chữ bên cạnh (nếu giữ lại) */
-    .logo h1 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0;
-        /* Nếu bạn muốn ẩn chữ Handmade đi và chỉ để logo ảnh thì bỏ comment dòng dưới: */
-        /* display: none; */
     }
 
     /* Navigation */
@@ -57,16 +44,29 @@
         color: #555;
         font-weight: 500;
         transition: color 0.3s;
+        position: relative;
+        padding: 6px 0;
     }
-    .nav a:hover, .nav a.active {
-        color: #27ae60; /* Màu xanh lá chủ đạo */
+    .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        background: #27ae60;
+        transition: width 0.3s ease;
+    }
+    .nav a:hover::after,
+    .nav a.active::after {
+        width: 100%;
     }
 
-    /* --- PHẦN MỚI: HEADER ACTIONS --- */
+    /* HEADER ACTIONS*/
     .header-actions {
         display: flex;
         align-items: center;
-        gap: 20px; /* Khoảng cách giữa Giỏ hàng và Auth */
+        gap: 20px;
     }
 
     /* Cart */
@@ -76,6 +76,7 @@
         position: relative;
         color: #333;
     }
+
     .cart-count {
         position: absolute;
         top: -8px;
@@ -101,6 +102,7 @@
         font-size: 0.95rem;
         font-weight: 500;
     }
+
     .btn-text:hover {
         color: #27ae60;
     }
@@ -119,11 +121,12 @@
         font-weight: 500;
         transition: background 0.3s;
     }
+
     .btn-primary:hover {
         background-color: #219150;
     }
 
-    /* Profile (Đã đăng nhập) */
+    /* Profile đã đăng nhập */
     .profile-btn {
         display: flex;
         align-items: center;
@@ -134,15 +137,15 @@
         border-radius: 20px;
         transition: background 0.2s;
     }
+
     .profile-btn:hover {
         background-color: #f5f5f5;
     }
 
-    /* Container bao quanh Avatar và Menu */
     .user-dropdown-container {
-        position: relative; /* Để menu con định vị theo cái này */
+        position: relative;
         cursor: pointer;
-        padding: 5px 0; /* Tăng diện tích hover để không bị mất menu */
+        padding: 5px 0;
         margin-left: 30px;
     }
 
@@ -160,14 +163,14 @@
         background-color: #f5f5f5;
     }
 
-    /* --- DROPDOWN MENU --- */
+    /*DROPDOWN MENU*/
     .dropdown-menu {
         position: absolute;
-        top: 100%; /* Hiện ngay bên dưới */
-        right: 0; /* Căn phải */
+        top: 100%;
+        right: 0;
         width: 200px;
         background-color: white;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         padding: 8px 0;
         z-index: 1001;
@@ -195,7 +198,8 @@
     /* Style riêng cho nút đăng xuất nếu muốn khác biệt */
     .logout-item {
         border-top: 1px solid #eee;
-        color: #e74c3c; /* Màu đỏ nhẹ cảnh báo */
+        color: #e74c3c;
+        /* Màu đỏ nhẹ cảnh báo */
     }
 
     .logout-item:hover {
@@ -203,13 +207,20 @@
         color: #c0392b;
     }
 
-    /* Hiệu ứng hiện menu nhẹ nhàng */
+    /* Hiệu ứng hiện menu */
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
-    /* Avatar và Username giữ nguyên như cũ của bạn */
+    /* Avatar và Username */
     .avatar-placeholder {
         width: 32px;
         height: 32px;
@@ -227,53 +238,47 @@
         font-size: 0.95rem;
         font-weight: 500;
     }
-    /* ... Giữ nguyên các phần CSS cũ (header, logo, nav...) ... */
 
-    /* --- Container bao quanh --- */
+    /*Container*/
     .user-dropdown-container {
         position: relative;
         margin-left: 20px;
     }
 
-    /* --- TẠO HÌNH ELIP (PROFILE TRIGGER) --- */
     .profile-trigger {
         display: flex;
         align-items: center;
         gap: 10px;
-
-        /* Tạo hình Elip/Viên thuốc */
-        padding: 5px 12px 5px 5px; /* Padding phải rộng hơn để chứa mũi tên */
-        border-radius: 50px; /* Bo tròn tối đa */
-        border: 1px solid #e0e0e0; /* Viền nhẹ để định hình */
+        padding: 5px 12px 5px 5px;
+        border-radius: 50px;
+        border: 1px solid #e0e0e0;
         background-color: #fff;
 
         cursor: pointer;
         transition: all 0.2s ease;
-        user-select: none; /* Không cho bôi đen text khi click */
+        user-select: none;
     }
 
-    /* Hiệu ứng khi di chuột vào hoặc khi menu đang mở */
     .profile-trigger:hover,
     .profile-trigger.active {
-        background-color: #f0fdf4; /* Màu nền xanh nhạt */
-        border-color: #27ae60;      /* Viền chuyển màu xanh */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background-color: #f0fdf4;
+        border-color: #27ae60;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    /* Mũi tên nhỏ */
+    /*Mũi tên nhỏ*/
     .arrow-down {
         font-size: 0.7rem;
         color: #888;
         transition: transform 0.2s;
     }
 
-    /* Xoay mũi tên khi menu mở */
+    /*Xoay mũi tên khi menu mở*/
     .profile-trigger.active .arrow-down {
         transform: rotate(180deg);
         color: #27ae60;
     }
 
-    /* Avatar chỉnh lại chút cho đẹp trong khung elip */
     .avatar-placeholder {
         width: 30px;
         height: 30px;
@@ -291,35 +296,34 @@
         font-size: 0.9rem;
         font-weight: 600;
         color: #333;
-        max-width: 100px; /* Giới hạn chiều dài tên nếu quá dài */
+        max-width: 100px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    /* --- DROPDOWN MENU --- */
+    /*DROPDOWN MENU*/
     .dropdown-menu {
         position: absolute;
-        top: calc(100% + 10px); /* Cách trigger 10px */
+        top: calc(100% + 10px);
         right: 0;
         width: 220px;
         background-color: white;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        border-radius: 12px; /* Bo góc menu mềm mại hơn */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
         padding: 8px;
-        z-index: 1002; /* Cao hơn overlay */
+        z-index: 1002;
         border: 1px solid #f0f0f0;
         animation: fadeIn 0.2s ease-in-out;
     }
 
-    /* Lớp phủ vô hình để xử lý click outside */
     .overlay-click-outside {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 1001; /* Nằm dưới menu nhưng trên các phần tử khác */
+        z-index: 1001;
         background: transparent;
         cursor: default;
     }
@@ -327,7 +331,7 @@
     .dropdown-item {
         display: flex;
         align-items: center;
-        gap: 10px; /* Khoảng cách icon và chữ */
+        gap: 10px;
         padding: 10px 12px;
         color: #444;
         text-decoration: none;
@@ -346,7 +350,7 @@
         margin-top: 5px;
         border-top: 1px solid #eee;
         color: #e74c3c;
-        border-radius: 0 0 8px 8px; /* Chỉ bo dưới */
+        border-radius: 0 0 8px 8px;
     }
 
     .logout-item:hover {
@@ -354,8 +358,163 @@
         color: #c0392b;
     }
 
-    /* Animation */
+    /*Animation*/
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-8px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /*SEARCH SUGGESTIONS*/
+    /* Header Search Modern UI */
+    .header-search {
+        width: 420px;
+        backdrop-filter: blur(8px);
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: #f5f7fa;
+        border: 1px solid #e1e4e8;
+        border-radius: 50px;
+        padding: 5px 5px 5px 20px;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Effect when user clicks search */
+    .header-search:focus-within {
+        background-color: #fff;
+        border-color: #27ae60;
+        box-shadow: 0 4px 15px rgba(39, 174, 96, 0.15);
+        transform: translateY(-1px);
+    }
+
+    .search-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 0.95rem;
+        color: #444;
+        padding: 8px 0;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .search-input::placeholder {
+        color: #aaa;
+        font-weight: 400;
+    }
+
+    .search-btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #27ae60;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-left: 10px;
+        box-shadow: 0 2px 5px rgba(39, 174, 96, 0.3);
+    }
+
+    .search-btn-icon:hover {
+        background: #219150;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(39, 174, 96, 0.4);
+    }
+
+    .search-btn-icon:active {
+        transform: scale(0.95);
+    }
+
+    .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        min-width: 300px;
+        background-color: white;
+        border: 1px solid #eee;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-top: 5px;
+        z-index: 1100;
+        max-height: 400px;
+        overflow-y: auto;
+        animation: fadeIn 0.15s ease-out;
+        border-radius: 14px;
+    }
+
+    .search-suggestion-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #f9f9f9;
+        transition: background 0.2s;
+        text-decoration: none;
+    }
+
+    .search-suggestion-item:last-child {
+        border-bottom: none;
+    }
+
+    .search-suggestion-item:hover {
+        background-color: #f5f5f5;
+    }
+
+    .suggestion-image {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 4px;
+        background-color: #eee;
+    }
+
+    .suggestion-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .suggestion-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.2;
+        margin-bottom: 2px;
+    }
+
+    .suggestion-price {
+        font-size: 0.8rem;
+        color: #27ae60;
+        font-weight: 600;
+    }
+
+    .search-suggestions::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .search-suggestions::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .search-suggestions::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+    }
+
+    .search-suggestions::-webkit-scrollbar-thumb:hover {
+        background: #bbb;
     }
