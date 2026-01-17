@@ -8,7 +8,7 @@
       "material": "Gỗ thông",
       "description": "Kệ gỗ handmade phong cách tối giản, phù hợp trang trí phòng khách.",
       "stock": 12,
-      "image": "/images/wood/wood1.jpg",
+      "image": "/img/wood1.jpg",
       "rating": 4.6
     },
     {
@@ -19,7 +19,7 @@
       "material": "Gỗ cao su",
       "description": "Bàn trà gỗ handmade kích thước nhỏ, thích hợp căn hộ mini.",
       "stock": 5,
-      "image": "/images/wood/wood2.jpg",
+      "image": "/img/wood2.jpg",
       "rating": 4.8
     },
     {
@@ -30,7 +30,7 @@
       "material": "Gỗ sồi",
       "description": "Giá sách gỗ đứng chắc chắn, hoàn thiện thủ công.",
       "stock": 3,
-      "image": "/images/wood/wood3.jpg",
+      "image": "/img/wood3.jpg",
       "rating": 4.7
     },
     {
@@ -41,7 +41,7 @@
       "material": "Gỗ thông",
       "description": "Hộp đựng trang sức nhỏ gọn, chạm khắc thủ công.",
       "stock": 20,
-      "image": "/images/wood/wood4.jpg",
+      "image": "/img/wood4.jpg",
       "rating": 4.5
     },
     {
@@ -52,7 +52,7 @@
       "material": "Gỗ tre",
       "description": "Đèn ngủ gỗ handmade ánh sáng dịu nhẹ.",
       "stock": 8,
-      "image": "/images/wood/wood5.jpg",
+      "image": "/img/wood5.jpg",
       "rating": 4.6
     },
     {
@@ -63,7 +63,7 @@
       "material": "Gỗ cao su",
       "description": "Khay gỗ dùng decor hoặc đựng đồ ăn nhẹ.",
       "stock": 15,
-      "image": "/images/wood/wood6.jpg",
+      "image": "/img/wood6.jpg",
       "rating": 4.4
     },
     {
@@ -74,7 +74,7 @@
       "material": "Len cotton",
       "description": "Gấu len móc tay 100%, an toàn cho trẻ em.",
       "stock": 25,
-      "image": "/images/yarn/yarn1.jpg",
+      "image": "/img/yarn1.jpg",
       "rating": 5.0
     },
     {
@@ -85,7 +85,7 @@
       "material": "Len cotton",
       "description": "Thỏ len trắng dễ thương, quà tặng ý nghĩa.",
       "stock": 18,
-      "image": "/images/yarn/yarn2.jpg",
+      "image": "/img/yarn2.jpg",
       "rating": 4.8
     },
     {
@@ -96,7 +96,7 @@
       "material": "Len sợi nhỏ",
       "description": "Móc khóa len nhiều hình dáng đáng yêu.",
       "stock": 50,
-      "image": "/images/yarn/yarn3.jpg",
+      "image": "/img/yarn3.jpg",
       "rating": 4.3
     },
     {
@@ -107,7 +107,7 @@
       "material": "Len sợi to",
       "description": "Túi xách len phong cách vintage.",
       "stock": 10,
-      "image": "/images/yarn/yarn4.jpg",
+      "image": "/img/yarn4.jpg",
       "rating": 4.7
     },
     {
@@ -118,7 +118,7 @@
       "material": "Len lông cừu",
       "description": "Áo len đan tay giữ ấm tốt, thiết kế đơn giản.",
       "stock": 6,
-      "image": "/images/yarn/yarn5.jpg",
+      "image": "/img/yarn5.jpg",
       "rating": 4.8
     },
     {
@@ -129,7 +129,7 @@
       "material": "Len mềm",
       "description": "Khăn len handmade nhẹ, phù hợp mùa lạnh.",
       "stock": 22,
-      "image": "/images/yarn/yarn6.jpg",
+      "image": "/img/yarn6.jpg",
       "rating": 4.6
     },
     {
@@ -140,7 +140,7 @@
       "material": "Gỗ thông",
       "description": "Chậu cây gỗ mini trang trí bàn làm việc.",
       "stock": 14,
-      "image": "/images/wood/wood7.jpg",
+      "image": "/img/wood7.jpg",
       "rating": 4.5
     },
     {
@@ -151,7 +151,7 @@
       "material": "Gỗ sồi",
       "description": "Đồng hồ gỗ treo tường phong cách mộc mạc.",
       "stock": 7,
-      "image": "/images/wood/wood8.jpg",
+      "image": "/img/wood8.jpg",
       "rating": 4.7
     },
     {
@@ -162,7 +162,7 @@
       "material": "Gỗ dừa",
       "description": "Bát gỗ dùng trang trí hoặc đựng snack.",
       "stock": 30,
-      "image": "/images/wood/wood9.jpg",
+      "image": "/img/wood9.jpg",
       "rating": 4.4
     },
     {
@@ -173,9 +173,10 @@
       "material": "Gỗ tre",
       "description": "Bộ lót ly gỗ khắc hoa văn thủ công.",
       "stock": 40,
-      "image": "/images/wood/wood10.jpg",
+      "image": "/img/wood10.jpg",
       "rating": 4.6
     },
+
     {
       "id": 17,
       "name": "Mũ len đan tay",
@@ -184,7 +185,7 @@
       "material": "Len lông cừu",
       "description": "Mũ len đan tay giữ ấm, thời trang.",
       "stock": 16,
-      "image": "/images/yarn/yarn7.jpg",
+      "image": "/img/yarn7.jpg",
       "rating": 4.7
     },
     {
@@ -195,7 +196,7 @@
       "material": "Len sợi lớn",
       "description": "Gối len handmade trang trí sofa.",
       "stock": 9,
-      "image": "/images/yarn/yarn8.jpg",
+      "image": "/img/yarn8.jpg",
       "rating": 4.6
     },
     {
@@ -206,7 +207,7 @@
       "material": "Gỗ cao su",
       "description": "Tấm lót bàn ăn bằng gỗ, bền và đẹp.",
       "stock": 18,
-      "image": "/images/wood/wood11.jpg",
+      "image": "/img/wood11.jpg",
       "rating": 4.5
     },
     {
@@ -217,7 +218,7 @@
       "material": "Len cotton",
       "description": "Mèo len móc tay đáng yêu, quà tặng trẻ em.",
       "stock": 20,
-      "image": "/images/yarn/yarn9.jpg",
+      "image": "/img/yarn9.jpg",
       "rating": 4.9
     },
     {
@@ -228,7 +229,7 @@
       "material": "Gỗ thông",
       "description": "Hộp bút gỗ thủ công, gọn nhẹ.",
       "stock": 28,
-      "image": "/images/wood/wood12.jpg",
+      "image": "/img/wood12.jpg",
       "rating": 4.4
     },
     {
@@ -239,7 +240,7 @@
       "material": "Len sợi to",
       "description": "Giỏ len handmade dùng đựng đồ trang trí.",
       "stock": 11,
-      "image": "/images/yarn/yarn10.jpg",
+      "image": "/img/yarn10.jpg",
       "rating": 4.6
     },
     {
@@ -250,7 +251,7 @@
       "material": "Gỗ tre",
       "description": "Đế điện thoại gỗ nhỏ gọn, tiện lợi.",
       "stock": 35,
-      "image": "/images/wood/wood13.jpg",
+      "image": "/img/wood13.jpg",
       "rating": 4.3
     },
     {
@@ -261,7 +262,7 @@
       "material": "Len cotton",
       "description": "Ví len nhỏ gọn, thiết kế trẻ trung.",
       "stock": 19,
-      "image": "/images/yarn/yarn11.jpg",
+      "image": "/img/yarn11.jpg",
       "rating": 4.5
     },
     {
@@ -272,8 +273,229 @@
       "material": "Gỗ sồi",
       "description": "Tranh gỗ khắc tay nghệ thuật, trang trí phòng.",
       "stock": 4,
-      "image": "/images/wood/wood14.jpg",
+      "image": "/img/wood14.jpg",
       "rating": 4.9
+    },
+
+    {
+      "id": 26,
+      "name": "Khay gỗ có tay cầm",
+      "price": 180000,
+      "category": "wood",
+      "material": "Gỗ tần bì",
+      "description": "Khay gỗ có tay cầm decor, đựng thức ăn và nước uống.",
+      "stock": 12,
+      "image": "/img/khay-go-tay-cam.jpg",
+      "rating": 0
+    },
+    {
+      "id": 27,
+      "name": "Thìa muỗng gỗ cành cây",
+      "price": 36000,
+      "category": "wood",
+      "material": "Gỗ đỏ",
+      "description": "Thìa muỗng gỗ nguyên khối phong cách Nhật.",
+      "stock": 40,
+      "image": "/img/thia-muong-go-canh-cay.jpg",
+      "rating": 0
+    },
+    {
+      "id": 28,
+      "name": "Lịch gỗ khay bút 2026",
+      "price": 369000,
+      "category": "wood",
+      "material": "Gỗ Maple",
+      "description": "Lịch gỗ để bàn tích hợp khay bút.",
+      "stock": 15,
+      "image": "/img/lich_khay_but_go.jpg",
+      "rating": 0
+    },
+    {
+      "id": 29,
+      "name": "Lịch gỗ ngôi nhà 2026 | Walnut",
+      "price": 389000,
+      "category": "wood",
+      "material": "Gỗ Walnut",
+      "description": "Lịch gỗ để bàn thiết kế ngôi nhà.",
+      "stock": 10,
+      "image": "/img/lich-ngoi-nha-walnut-2026.jpg",
+      "rating": 0
+    },
+    {
+      "id": 30,
+      "name": "Lịch gỗ ngôi nhà 2026 | Beech",
+      "price": 389000,
+      "category": "wood",
+      "material": "Gỗ Beech",
+      "description": "Lịch gỗ để bàn gỗ Beech.",
+      "stock": 10,
+      "image": "/img/lich-ngoi-nha-maple.jpg",
+      "rating": 0
+    },
+    {
+      "id": 31,
+      "name": "Lịch gỗ khung ảnh 2026",
+      "price": 399000,
+      "category": "wood",
+      "material": "Gỗ Beech",
+      "description": "Lịch gỗ kết hợp khung ảnh.",
+      "stock": 8,
+      "image": "/img/lich_khung_anh_mm_2026.jpg",
+      "rating": 0
+    },
+    {
+      "id": 32,
+      "name": "Sổ gỗ Maple in UV – Ngựa đạp mây",
+      "price": 249000,
+      "category": "wood",
+      "material": "Gỗ Maple",
+      "description": "Sổ tay bìa gỗ in UV.",
+      "stock": 20,
+      "image": "/img/so-go-ma-dap-may.jpg",
+      "rating": 0
+    },
+    {
+      "id": 33,
+      "name": "Sổ gỗ Maple in UV – Ngựa may mắn",
+      "price": 249000,
+      "category": "wood",
+      "material": "Gỗ Maple",
+      "description": "Sổ tay bìa gỗ họa tiết ngựa.",
+      "stock": 20,
+      "image": "/img/so-go-ngua-may-man.jpg",
+      "rating": 0
+    },
+    {
+      "id": 34,
+      "name": "Thỏ bông để bàn handmade",
+      "price": 89000,
+      "category": "yarn",
+      "material": "Len",
+      "description": "Thỏ bông len handmade.",
+      "stock": 25,
+      "image": "/img/tho-bong-len--xanh-duong.jpg",
+      "rating": 0
+    },
+    {
+      "id": 35,
+      "name": "Mèo nhồi bông handmade",
+      "price": 119000,
+      "category": "yarn",
+      "material": "Len",
+      "description": "Mèo nhồi bông len handmade.",
+      "stock": 22,
+      "image": "/img/meo-nhoi-bong.jpg",
+      "rating": 0
+    },
+    {
+      "id": 36,
+      "name": "Gấu nhồi bông len handmade",
+      "price": 119000,
+      "category": "yarn",
+      "material": "Len",
+      "description": "Gấu nhồi bông len.",
+      "stock": 18,
+      "image": "/img/gau-bong-nau-len.jpg",
+      "rating": 0
+    },
+    {
+      "id": 37,
+      "name": "Hộp hoa len handmade trong suốt",
+      "price": 1836000,
+      "category": "yarn",
+      "material": "Len cotton",
+      "description": "Hộp hoa len trưng bày cao cấp.",
+      "stock": 5,
+      "image": "/img/hop-hoa-len-handmade-trong-suot.jpg",
+      "rating": 0
+    },
+    {
+      "id": 38,
+      "name": "Len Milk Cotton Hàn Quốc",
+      "price": 8000,
+      "category": "material",
+      "material": "Cotton",
+      "description": "Len Milk Cotton 25g.",
+      "stock": 100,
+      "image": "/img/len-milk-cotton.png",
+      "rating": 0
+    },
+    {
+      "id": 39,
+      "name": "Kim đan ADDI Unicorn",
+      "price": 261000,
+      "category": "tool",
+      "material": "Kim loại",
+      "description": "Kim đan tròn ADDI.",
+      "stock": 30,
+      "image": "/img/kim-dan-audi.png",
+      "rating": 0
+    },
+    {
+      "id": 40,
+      "name": "Kim móc Clover Amure",
+      "price": 299000,
+      "category": "tool",
+      "material": "Kim loại & nhựa",
+      "description": "Kim móc Clover Amure.",
+      "stock": 35,
+      "image": "/img/kim-moc-clover.png",
+      "rating": 0
+    },
+    {
+      "id": 41,
+      "name": "Kéo cắt chỉ mini",
+      "price": 21000,
+      "category": "tool",
+      "material": "Thép",
+      "description": "Kéo cắt chỉ mini.",
+      "stock": 60,
+      "image": "/img/keo-cat-chi-mini.jpg",
+      "rating": 0
+    },
+    {
+      "id": 42,
+      "name": "Kéo trang trí Retro",
+      "price": 82000,
+      "category": "tool",
+      "material": "Thép",
+      "description": "Kéo trang trí retro.",
+      "stock": 40,
+      "image": "/img/keo-trang-tri-retro.jpg",
+      "rating": 0
+    },
+    {
+      "id": 43,
+      "name": "Khung cưa sắt mini",
+      "price": 139000,
+      "category": "tool",
+      "material": "Nhôm & thép",
+      "description": "Khung cưa sắt mini.",
+      "stock": 25,
+      "image": "/img/cua-mini-cam-tay.jpg",
+      "rating": 0
+    },
+    {
+      "id": 44,
+      "name": "Bào gỗ mini cầm tay",
+      "price": 59000,
+      "category": "tool",
+      "material": "Thép",
+      "description": "Bào gỗ mini cầm tay.",
+      "stock": 35,
+      "image": "/img/bao-go-mini-cam-tay.jpg",
+      "rating": 0
+    },
+    {
+      "id": 45,
+      "name": "Sợi cotton visco Essentials Cotton Glitz DK",
+      "price": 135000,
+      "category": "material",
+      "material": "Cotton - Viscose - Polyester",
+      "description": "Sợi cotton visco có ánh kim.",
+      "stock": 80,
+      "image": "/img/soi-cotton-visco.webp",
+      "rating": 0
     }
   ]
 }

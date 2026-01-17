@@ -84,7 +84,7 @@ const ProductDetail: React.FC = () => {
                 <div className="product-gallery">
                     <div className="main-image-frame">
                         <img
-                            src={product.images || "https://via.placeholder.com/500"}
+                            src={product.image || "https://via.placeholder.com/500"}
                             alt={product.name}
                         />
                     </div>

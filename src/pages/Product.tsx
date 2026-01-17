@@ -23,17 +23,15 @@ const Products: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-// State bộ lọc
     const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
     const [priceRange, setPriceRange] = useState<number>(1_500_000);
     const [sortType, setSortType] = useState<string>("newest");
-// 2. Gọi API khi component được mount
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-// Gọi hàm từ productService.js
                 const data = await getAllProducts();
+                console.log(data);
                 setProducts(data);
             } catch (err: any) {
                 console.error("Lỗi tải sản phẩm:", err);
@@ -44,10 +42,7 @@ const Products: React.FC = () => {
         };
         fetchData();
     }, []);
-    /* =======================
-    FILTER + SORT LOGIC
-    ======================= */
-// Logic này giữ nguyên, nhưng chạy trên state 'products' đã fetch về
+
     const filteredProducts = products
         .filter((p: Product) =>
             activeCategory === "all" ? true : p.category === activeCategory
@@ -62,11 +57,9 @@ const Products: React.FC = () => {
                 case "rating":
                     return b.rating - a.rating;
                 default:
-// Sắp xếp theo ID giảm dần (mới nhất giả lập)
                     return b.id - a.id;
             }
         });
-// 3. Hiển thị Loading , Lỗi
     if (isLoading) return <div className="loading">Đang tải sản phẩm...</div>;
     if (error) return <div className="error">{error}</div>;
     return (
@@ -80,7 +73,6 @@ const Products: React.FC = () => {
             </div>
 
             <div className="products-container">
-                {/* SIDEBAR */}
                 <aside className="filter-sidebar">
                     <h3>Danh mục</h3>
                     <ul className="category-list">
@@ -131,22 +123,16 @@ const Products: React.FC = () => {
         </div>
     );
 };
-/* =======================
-PRODUCT CARD COMPONENT
-======================= */
+
 interface ProductCardProps {
     product: Product;
 }
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-// Kiểm tra an toàn cho ảnh
-    const imageUrl = (product.images && product.images.length > 0)
-        ? product.images[0]
-        : "https://via.placeholder.com/300";
+    const imageUrl = product.image;
     return (
         <Link to={`/product/${product.id}`} className="product-card">
             <div className="image-wrapper">
                 <img src={imageUrl} alt={product.name} />
-                {/* Tag sản phẩm (nếu có logic) */}
                 {product.stock === 0 && <span className="product-tag tag-hot">Hết hàng</span>}
             </div>
             <div className="card-info">
@@ -154,7 +140,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <p className="price">{product.price.toLocaleString()}đ</p>
                 <p className="rating">⭐ {product.rating}</p>
             </div>
-            {/* Nếu muốn nút hành động nhanh, có thể đặt ở đây nhưng cần handle e.preventDefault() */}
         </Link>
     );
 };
