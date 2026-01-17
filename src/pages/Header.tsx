@@ -1,19 +1,36 @@
-import { useState } from "react"; // 1. Import useState
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { clearAuth } from "../utils/authStorage";
-import { User } from "../types/user";
+import {useEffect, useState} from "react"; // 1. Import useState
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {clearAuth} from "../utils/authStorage";
+import {User} from "../types/user";
+import {cartService} from "../services/cartService";
 
 interface HeaderProps {
     user: User | null;
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const Header = ({ user, setUser }: HeaderProps) => {
+const Header = ({user, setUser}: HeaderProps) => {
     const navigate = useNavigate();
     const isLoggedIn = !!user;
-
-    // 2. State để quản lý việc đóng mở menu
+    const [cartCount, setCartCount] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
+    const fetchCartCount = async () => {
+        try {
+            const data = await cartService.getCart();
+
+            const items = Array.isArray(data?.items) ? data.items : [];
+
+            const totalQuantity = items.reduce(
+                (sum: number, item: any) => sum + Number(item.quantity || 0),
+                0
+            );
+
+            setCartCount(totalQuantity);
+        } catch (error) {
+            console.error("Lỗi đếm giỏ hàng:", error);
+            setCartCount(0);
+        }
+    };
 
     const handleLogout = () => {
         // Đóng menu trước khi logout
@@ -23,7 +40,19 @@ const Header = ({ user, setUser }: HeaderProps) => {
         setUser(null);
         navigate("/login");
     };
+    useEffect(() => {
+        fetchCartCount();
 
+        const handleCartChange = () => {
+            fetchCartCount();
+        };
+
+        window.addEventListener("cartChange", handleCartChange);
+
+        return () => {
+            window.removeEventListener("cartChange", handleCartChange);
+        };
+    }, [user]);
     return (
         <header className="header">
             <div className="header-container">
@@ -38,10 +67,10 @@ const Header = ({ user, setUser }: HeaderProps) => {
 
                 {/*Menu */}
                 <nav className="nav">
-                    <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Trang chủ</NavLink>
-                    <NavLink to="/products" className={({ isActive }) => isActive ? "active" : ""}>Sản phẩm</NavLink>
-                    <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>Giới thiệu</NavLink>
-                    <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Liên hệ</NavLink>
+                    <NavLink to="/" className={({isActive}) => isActive ? "active" : ""}>Trang chủ</NavLink>
+                    <NavLink to="/products" className={({isActive}) => isActive ? "active" : ""}>Sản phẩm</NavLink>
+                    <NavLink to="/about" className={({isActive}) => isActive ? "active" : ""}>Giới thiệu</NavLink>
+                    <NavLink to="/contact" className={({isActive}) => isActive ? "active" : ""}>Liên hệ</NavLink>
                 </nav>
 
                 {/*Actions*/}
@@ -49,7 +78,7 @@ const Header = ({ user, setUser }: HeaderProps) => {
 
                     {/* Cart */}
                     <Link to="/cart" className="action-btn cart-btn">
-                        🛒 <span className="cart-count">2</span>
+                        🛒 <span className="cart-count">{cartCount}</span>
                     </Link>
 
                     {/* Phần Tài khoản */}
@@ -67,7 +96,7 @@ const Header = ({ user, setUser }: HeaderProps) => {
                                     </div>
                                     <span className="username">Hi, {user?.fullName}</span>
                                     {/* Mũi tên nhỏ chỉ xuống */}
-                                    <span className="arrow-down" style={{ fontSize: '10px' }}>▼</span>
+                                    <span className="arrow-down" style={{fontSize: '10px'}}>▼</span>
                                 </div>
 
                                 {/* 2. Menu Dropdown & Overlay (Chỉ hiện khi isOpen = true) */}

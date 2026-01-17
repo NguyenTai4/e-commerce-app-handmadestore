@@ -219,6 +219,16 @@
       "phone": "",
       "address": "",
       "createdAt": "2026-01-14"
+    },
+    {
+      "id": 23,
+      "email": "22130240@st.hcmuaf.edu.vn",
+      "password": null,
+      "fullName": "Tài Nguyễn Hữu",
+      "role": "user",
+      "phone": "",
+      "address": "",
+      "createdAt": "2026-01-17"
     }
   ]
 }

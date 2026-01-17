@@ -2,12 +2,12 @@ import productsData from "../../db_json/products.json" with { type: "json" };
 import { delay } from "../utils/delay.js";
 
 export async function getAllProducts() {
-    await delay();
+    // await delay();
     return productsData.products;
 }
 
 export async function getProductById(id) {
-    await delay();
+    // await delay();
 
     const product = productsData.products.find(
         p => p.id === Number(id)
