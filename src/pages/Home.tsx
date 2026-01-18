@@ -10,6 +10,7 @@ const Home = () => {
     const navigate = useNavigate();
     const trackRef = useRef<HTMLDivElement>(null);
     const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+    const [sliderProducts, setSliderProducts] = useState<Product[]>([]);
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
@@ -70,6 +71,7 @@ const Home = () => {
         const fetchProducts = async () => {
             const data = await getAllProducts();
             setFeaturedProducts(data.slice(0, 4));
+            setSliderProducts(data.slice(0, 5));
         };
         fetchProducts();
     }, []);
@@ -113,14 +115,22 @@ const Home = () => {
                 </div>
 
                 <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
-                    <img className="image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800"
-                        draggable="false" alt={""} />
-                    <img className="image" src="https://images.unsplash.com/photo-1526045431048-f857369baa09?w=800"
-                        draggable="false" alt={""} />
-                    <img className="image" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=800"
-                        draggable="false" alt={""} />
-                    <img className="image" src="https://images.unsplash.com/photo-1550921096-c037fa9d00b9?w=800"
-                        draggable="false" alt={""} />
+                    {sliderProducts.map((product) => (
+                        <img
+                            key={product.id}
+                            className="image"
+                            src={product.image}
+                            draggable="false"
+                            alt={product.name}
+                            onClick={(e) => {
+                                // Simple check to avoid navigation on drag
+                                const track = trackRef.current;
+                                if (track && track.dataset.mouseDownAt === "0") {
+                                    navigate(`/product/${product.id}`, { state: { product } });
+                                }
+                            }}
+                        />
+                    ))}
                 </div>
             </div>
 
