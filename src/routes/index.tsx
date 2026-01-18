@@ -10,7 +10,7 @@ import {
     ProfileUser,
     ProductDetail,
     AppLayout,
-    NotFound
+    NotFound, Contact, About
 } from "../pages";
 import {getAuth} from "../utils/authStorage";
 import {useEffect, useState} from "react";
@@ -40,6 +40,8 @@ const AppRouter = () => {
                     <Route path="/profileUser" element={<ProfileUser user={user} setUser={setUser}/>}/>
                     <Route path="/login" element={<Login setUser={setUser}/>}/>
                     <Route path="/register" element={<Register setUser={setUser}/>}/>
+                    <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/about" element={<About/>}/>
                     <Route path="/checkout" element={<Checkout/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Route>
