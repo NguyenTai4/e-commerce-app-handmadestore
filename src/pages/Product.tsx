@@ -96,7 +96,7 @@ const Products: React.FC = () => {
                     <input
                         type="range"
                         min={0}
-                        max={1_500_000}
+                        max={2_500_000}
                         step={50_000}
                         value={priceRange}
                         onChange={(e) => setPriceRange(Number(e.target.value))}
