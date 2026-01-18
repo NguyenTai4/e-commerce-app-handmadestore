@@ -12,6 +12,8 @@ import "./css/Register.css";
 import "./css//ProfileUser.css";
 import "./css/ProductDetail.css";
 import "./css/NotFound.css";
+import "./css/Contact.css";
+import "./css/About.css";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

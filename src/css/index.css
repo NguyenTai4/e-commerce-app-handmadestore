@@ -8,21 +8,21 @@ body {
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #f9f9f9;
-    overflow-x: hidden; /* Tránh thanh cuộn ngang trang web */
+    overflow-x: hidden;
 }
 
 /* --- HERO SECTION (SLIDER) --- */
 .hero-section {
-    height: 70vh; /* Chiếm 70% màn hình */
+    height: 70vh;
     width: 100%;
-    background-color: #1a1a1a; /* Màu nền tối để ảnh nổi bật */
+    background-color: #1a1a1a;
     position: relative;
     overflow: hidden;
-    cursor: grab; /* Con trỏ hình bàn tay */
+    cursor: grab;
 }
 
 .hero-section:active {
-    cursor: grabbing; /* Con trỏ nắm lấy khi click */
+    cursor: grabbing;
 }
 
 /* Text hướng dẫn đè lên Hero */
@@ -32,7 +32,7 @@ body {
     left: 5%;
     z-index: 10;
     color: white;
-    pointer-events: none; /* Để chuột click xuyên qua text vào slider */
+    pointer-events: none;
 }
 
 .hero-text {
@@ -43,33 +43,32 @@ body {
     color: white;
     pointer-events: none;
 }
+
 @keyframes slideInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px); /* Bắt đầu cách vị trí gốc 100px về bên trái */
+        transform: translateX(-100px);
     }
+
     100% {
         opacity: 1;
-        transform: translateX(0); /* Trở về vị trí gốc */
+        transform: translateX(0);
     }
 }
+
 /* Áp dụng animation cho thẻ H2 */
 .hero-text h2 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-
-    /* Thêm dòng này */
-    opacity: 0; /* Ẩn mặc định để tránh nháy hình trước khi animate */
-    animation: slideInLeft 1s ease-out forwards; /* Chạy trong 1s, giữ nguyên trạng thái cuối */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: slideInLeft 1s ease-out forwards;
 }
 
 /* Áp dụng animation cho thẻ P (Delay một chút cho đẹp) */
 .hero-text p {
     font-size: 1.2rem;
-    opacity: 0; /* Ẩn mặc định */
-
-    /* Thêm dòng này: delay 0.3s để chạy sau tiêu đề */
+    opacity: 0;
     animation: slideInLeft 1s ease-out 0.3s forwards;
 }
 
@@ -81,22 +80,22 @@ body {
 
 /* Slider Track */
 #image-track {
-     display: flex;
-     gap: 4vmin;
-     position: absolute;
-     left: 50%;
-     top: 50%;
-     transform: translate(0%, -50%);
-     user-select: none; /* Không cho bôi đen ảnh */
- }
+    display: flex;
+    gap: 4vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    user-select: none;
+}
 
-#image-track > .image {
+#image-track>.image {
     width: 40vmin;
     height: 56vmin;
     object-fit: cover;
     object-position: 100% 50%;
-    border-radius: 8px; /* Bo góc ảnh cho mềm mại */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Đổ bóng */
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* --- PRODUCT SECTION --- */
@@ -129,33 +128,31 @@ body {
 }
 
 .view-all:hover {
-    margin-right: 5px; /* Hiệu ứng di chuyển nhỏ */
+    margin-right: 5px;
 }
 
 /* Grid Layout */
 .products-grid {
     display: grid;
-    /* Tự động chia cột, tối thiểu 250px 1 cột */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 30px;
 }
 
 /* Product Card */
-/* ... (CSS phần Hero giữ nguyên) ... */
-
 /* --- PRODUCT CARD STYLING --- */
 .product-card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
-    position: relative; /* Để định vị các thành phần con */
+    position: relative;
+    /* Để định vị các thành phần con */
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .product-img-wrapper {
@@ -189,9 +186,9 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #ccc; /* Màu mặc định */
-    opacity: 0; /* Ẩn khi chưa hover vào card */
-    transform: translateX(20px); /* Dịch sang phải để tạo hiệu ứng bay vào */
+    color: #ccc;
+    opacity: 0;
+    transform: translateX(20px);
     transition: all 0.3s ease;
     z-index: 2;
 }
@@ -203,26 +200,26 @@ body {
 
 .wishlist-btn:hover {
     background: #fff;
-    color: #e74c3c; /* Chuyển đỏ khi hover vào tim */
-    transform: scale(1.1); /* Phóng to nhẹ */
+    color: #e74c3c;
+    transform: scale(1.1);
 }
 
 /* --- NHÓM NÚT HÀNH ĐỘNG (ADD TO CART & BUY NOW) --- */
 .action-buttons {
     position: absolute;
-    bottom: -60px; /* Ẩn bên dưới */
+    bottom: -60px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 10px; /* Khoảng cách giữa 2 nút */
+    gap: 10px;
     padding: 0 15px;
     transition: bottom 0.3s ease-out;
     z-index: 2;
 }
 
 .product-card:hover .action-buttons {
-    bottom: 20px; /* Trồi lên khi hover */
+    bottom: 20px;
 }
 
 .btn {
@@ -234,7 +231,7 @@ body {
     font-weight: 600;
     white-space: nowrap;
     transition: transform 0.2s, box-shadow 0.2s;
-    flex: 1; /* Chia đều độ rộng cho 2 nút */
+    flex: 1;
 }
 
 .btn:active {
@@ -280,4 +277,152 @@ body {
     color: #e74c3c;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+/* --- DISCOUNT SECTION --- */
+.discount-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    padding: 60px 20px;
+    margin: 60px 0;
+    gap: 50px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(253, 160, 133, 0.3);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.discount-content {
+    flex: 1;
+    max-width: 500px;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.discount-content h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.discount-content h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.discount-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.time-box {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.time-box span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.time-box small {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.discount-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    background-color: white;
+    color: #e67e22;
+    /* Cam cho nổi */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.discount-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    color: #d35400;
+}
+
+.discount-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.discount-image img {
+    max-width: 100%;
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.2);
+    transform: perspective(800px) rotateY(-10deg);
+    transition: transform 0.5s ease;
+}
+
+.discount-image:hover img {
+    transform: perspective(800px) rotateY(0deg) scale(1.05);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .discount-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .discount-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .countdown-timer {
+        justify-content: center;
+    }
+
+    .discount-image img {
+        width: 100%;
+        max-width: 300px;
+        transform: none;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
 }

@@ -13,7 +13,6 @@ const ProfileUser: React.FC<ProfileUserProps> = ({ user, setUser }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
-    // Khi component mount hoặc user thay đổi (từ cha), đồng bộ dữ liệu vào form
     useEffect(() => {
         if (user) {
             setFormData({

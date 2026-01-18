@@ -50,3 +50,14 @@ export async function getProductBySlug(slug) {
     // Trả về phần tử đầu tiên tìm thấy
     return data[0];
 }
+
+/** Tìm kiếm sản phẩm theo tên */
+export async function searchProducts(query) {
+    const res = await fetch(`${API_URL}?name_like=${query}`);
+
+    if (!res.ok) {
+        throw new Error("Lỗi tìm kiếm sản phẩm");
+    }
+
+    return res.json();
+}

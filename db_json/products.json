@@ -8,7 +8,7 @@
       "material": "Gỗ thông",
       "description": "Kệ gỗ handmade phong cách tối giản, phù hợp trang trí phòng khách.",
       "stock": 12,
-      "image": "/img/wood1.jpg",
+      "image": "/img/ke_go_treo_tuong_toi_gian.jpg",
       "rating": 4.6
     },
     {
@@ -19,7 +19,7 @@
       "material": "Gỗ cao su",
       "description": "Bàn trà gỗ handmade kích thước nhỏ, thích hợp căn hộ mini.",
       "stock": 5,
-      "image": "/img/wood2.jpg",
+      "image": "/img/ban_tra_go_nho.jpg",
       "rating": 4.8
     },
     {
@@ -30,7 +30,7 @@
       "material": "Gỗ sồi",
       "description": "Giá sách gỗ đứng chắc chắn, hoàn thiện thủ công.",
       "stock": 3,
-      "image": "/img/wood3.jpg",
+      "image": "/img/gia_sach_go_dung.jpg",
       "rating": 4.7
     },
     {
@@ -41,7 +41,7 @@
       "material": "Gỗ thông",
       "description": "Hộp đựng trang sức nhỏ gọn, chạm khắc thủ công.",
       "stock": 20,
-      "image": "/img/wood4.jpg",
+      "image": "/img/hop_dung_trang_suc_go.jpg",
       "rating": 4.5
     },
     {
@@ -52,7 +52,7 @@
       "material": "Gỗ tre",
       "description": "Đèn ngủ gỗ handmade ánh sáng dịu nhẹ.",
       "stock": 8,
-      "image": "/img/wood5.jpg",
+      "image": "/img/den_ngu_go_handmade.jpeg",
       "rating": 4.6
     },
     {
@@ -63,7 +63,7 @@
       "material": "Gỗ cao su",
       "description": "Khay gỗ dùng decor hoặc đựng đồ ăn nhẹ.",
       "stock": 15,
-      "image": "/img/wood6.jpg",
+      "image": "/img/khay_go_decor_ban_an.jpg",
       "rating": 4.4
     },
     {
@@ -74,7 +74,7 @@
       "material": "Len cotton",
       "description": "Gấu len móc tay 100%, an toàn cho trẻ em.",
       "stock": 25,
-      "image": "/img/yarn1.jpg",
+      "image": "/img/thu_len_moc_tay_gau_nau.jpg",
       "rating": 5.0
     },
     {
@@ -85,7 +85,7 @@
       "material": "Len cotton",
       "description": "Thỏ len trắng dễ thương, quà tặng ý nghĩa.",
       "stock": 18,
-      "image": "/img/yarn2.jpg",
+      "image": "/img/thu_len_moc_tay_tho_trang.jpg",
       "rating": 4.8
     },
     {
@@ -96,7 +96,7 @@
       "material": "Len sợi nhỏ",
       "description": "Móc khóa len nhiều hình dáng đáng yêu.",
       "stock": 50,
-      "image": "/img/yarn3.jpg",
+      "image": "/img/moc_khoa_len_handmade.jpg",
       "rating": 4.3
     },
     {
@@ -107,7 +107,7 @@
       "material": "Len sợi to",
       "description": "Túi xách len phong cách vintage.",
       "stock": 10,
-      "image": "/img/yarn4.jpg",
+      "image": "/img/tui_xach_len_handmade.jpg",
       "rating": 4.7
     },
     {
@@ -118,7 +118,7 @@
       "material": "Len lông cừu",
       "description": "Áo len đan tay giữ ấm tốt, thiết kế đơn giản.",
       "stock": 6,
-      "image": "/img/yarn5.jpg",
+      "image": "/img/ao_len_dan_tay.jpg",
       "rating": 4.8
     },
     {
@@ -129,7 +129,7 @@
       "material": "Len mềm",
       "description": "Khăn len handmade nhẹ, phù hợp mùa lạnh.",
       "stock": 22,
-      "image": "/img/yarn6.jpg",
+      "image": "/img/khan_len_handmade.jpg",
       "rating": 4.6
     },
     {
@@ -140,7 +140,7 @@
       "material": "Gỗ thông",
       "description": "Chậu cây gỗ mini trang trí bàn làm việc.",
       "stock": 14,
-      "image": "/img/wood7.jpg",
+      "image": "/img/chau_cay_go_mini.jpg",
       "rating": 4.5
     },
     {
@@ -151,7 +151,7 @@
       "material": "Gỗ sồi",
       "description": "Đồng hồ gỗ treo tường phong cách mộc mạc.",
       "stock": 7,
-      "image": "/img/wood8.jpg",
+      "image": "/img/dong_ho_treo_tuong_go.jpg",
       "rating": 4.7
     },
     {
@@ -162,7 +162,7 @@
       "material": "Gỗ dừa",
       "description": "Bát gỗ dùng trang trí hoặc đựng snack.",
       "stock": 30,
-      "image": "/img/wood9.jpg",
+      "image": "/img/bat_go_handmade.jpg",
       "rating": 4.4
     },
     {
@@ -173,7 +173,7 @@
       "material": "Gỗ tre",
       "description": "Bộ lót ly gỗ khắc hoa văn thủ công.",
       "stock": 40,
-      "image": "/img/wood10.jpg",
+      "image": "/img/lot_ly_go_khac_tay.jpg",
       "rating": 4.6
     },
 
@@ -185,7 +185,7 @@
       "material": "Len lông cừu",
       "description": "Mũ len đan tay giữ ấm, thời trang.",
       "stock": 16,
-      "image": "/img/yarn7.jpg",
+      "image": "/img/mu_len_dan_tay.jpg",
       "rating": 4.7
     },
     {
@@ -196,7 +196,7 @@
       "material": "Len sợi lớn",
       "description": "Gối len handmade trang trí sofa.",
       "stock": 9,
-      "image": "/img/yarn8.jpg",
+      "image": "/img/goi_len_handmade.jpg",
       "rating": 4.6
     },
     {
@@ -207,7 +207,7 @@
       "material": "Gỗ cao su",
       "description": "Tấm lót bàn ăn bằng gỗ, bền và đẹp.",
       "stock": 18,
-      "image": "/img/wood11.jpg",
+      "image": "/img/tam_lot_ban_go.jpg",
       "rating": 4.5
     },
     {
@@ -218,7 +218,7 @@
       "material": "Len cotton",
       "description": "Mèo len móc tay đáng yêu, quà tặng trẻ em.",
       "stock": 20,
-      "image": "/img/yarn9.jpg",
+      "image": "/img/thu_len_moc_tay_meo_xam.jpg",
       "rating": 4.9
     },
     {
@@ -229,7 +229,7 @@
       "material": "Gỗ thông",
       "description": "Hộp bút gỗ thủ công, gọn nhẹ.",
       "stock": 28,
-      "image": "/img/wood12.jpg",
+      "image": "/img/hop_but_go_handmade.jpg",
       "rating": 4.4
     },
     {
@@ -240,7 +240,7 @@
       "material": "Len sợi to",
       "description": "Giỏ len handmade dùng đựng đồ trang trí.",
       "stock": 11,
-      "image": "/img/yarn10.jpg",
+      "image": "/img/gio_len_handmade.jpg",
       "rating": 4.6
     },
     {
@@ -251,7 +251,7 @@
       "material": "Gỗ tre",
       "description": "Đế điện thoại gỗ nhỏ gọn, tiện lợi.",
       "stock": 35,
-      "image": "/img/wood13.jpg",
+      "image": "/img/de_dien_thoai_go.jpg",
       "rating": 4.3
     },
     {
@@ -262,7 +262,7 @@
       "material": "Len cotton",
       "description": "Ví len nhỏ gọn, thiết kế trẻ trung.",
       "stock": 19,
-      "image": "/img/yarn11.jpg",
+      "image": "/img/vi_len_handmade.jpg",
       "rating": 4.5
     },
     {
@@ -273,7 +273,7 @@
       "material": "Gỗ sồi",
       "description": "Tranh gỗ khắc tay nghệ thuật, trang trí phòng.",
       "stock": 4,
-      "image": "/img/wood14.jpg",
+      "image": "/img/tranh_go_khac_tay.jpg",
       "rating": 4.9
     },
 
@@ -425,7 +425,7 @@
       "name": "Kim đan ADDI Unicorn",
       "price": 261000,
       "category": "tool",
-      "material": "Kim loại",
+        "material": "Kim loại",
       "description": "Kim đan tròn ADDI.",
       "stock": 30,
       "image": "/img/kim-dan-audi.png",
