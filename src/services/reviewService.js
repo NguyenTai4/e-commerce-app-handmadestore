@@ -21,3 +21,12 @@ export async function getReviewStats(productId) {
 
     return res.json();
 }
+export async function searchProducts(query) {
+    const res = await fetch(`${API_URL}?name_like=${query}`);
+
+    if (!res.ok) {
+        throw new Error("Lỗi tìm kiếm sản phẩm");
+    }
+
+    return res.json();
+}
