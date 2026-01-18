@@ -160,7 +160,6 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            {/* ===== DISCOUNT SECTION (UI ONLY) ===== */}
             <section className="discount-section">
                 <div className="discount-content">
                     <h5>Ưu đãi đặc biệt</h5>
@@ -170,7 +169,6 @@ const Home = () => {
                         Ưu đãi có thời hạn – đừng bỏ lỡ!
                     </p>
 
-                    {/* Countdown UI (chỉ giao diện) */}
                     <Link to="/products" className="discount-btn">
                         Xem sản phẩm giảm giá
                     </Link>
