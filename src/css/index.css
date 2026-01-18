@@ -241,7 +241,6 @@ body {
     transform: scale(0.95);
 }
 
-/* Style riêng cho nút Thêm giỏ */
 .add-to-cart {
     background-color: white;
     color: #333;
@@ -252,7 +251,6 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Style riêng cho nút Mua ngay (Nổi bật hơn) */
 .buy-now {
     background-color: #27ae60;
     color: white;
@@ -264,13 +262,12 @@ body {
     box-shadow: 0 6px 12px rgba(39, 174, 96, 0.4);
 }
 
-/* Thông tin sản phẩm */
 .product-info {
     padding: 15px;
     text-align: center;
     background: white;
     position: relative;
-    z-index: 3; /* Đảm bảo đè lên phần ảnh nếu cần */
+    z-index: 3;
 }
 
 .product-info h4 {

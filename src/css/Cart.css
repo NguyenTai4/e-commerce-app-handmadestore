@@ -331,3 +331,178 @@
     border-color: var(--color-text-primary);
     color: var(--color-text-primary);
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-title {
+    margin-top: 0;
+    color: #333;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+}
+
+.modal-desc {
+    color: #666;
+    margin: 20px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+}
+
+.btn-modal-cancel {
+    border: 1px solid #ccc;
+    background: white;
+    color: #333;
+}
+
+.btn-modal-cancel:hover {
+    background-color: #f5f5f5;
+    border-color: #bbb;
+}
+
+.btn-modal-delete {
+    border: none;
+    background: #e74c3c;
+    color: white;
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+.btn-modal-delete:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cart-actions-bar {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #efe5d9;
+}
+
+.select-all-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    user-select: none;
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-accent);
+}
+
+.btn-bulk-delete {
+    color: #e74c3c;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-body);
+    transition: opacity 0.2s;
+}
+
+.btn-bulk-delete:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.cart-item-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.total-price-display {
+    color: #999;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.total-price-display.active {
+    color: var(--color-accent);
+}
+
+.checkout-btn {
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--color-text-secondary);
+    box-shadow: none;
+    transform: none !important;
+}

@@ -1,0 +1,57 @@
+/* src/pages/NotFound.css */
+.not-found-container {
+    min-height: 80vh; /* Chiếm phần lớn chiều cao màn hình */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-bg-main);
+    font-family: var(--font-body);
+    padding: 20px;
+}
+
+.not-found-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--color-accent); /* Màu cam chủ đạo */
+    line-height: 1;
+    margin: 0;
+    font-family: var(--font-heading);
+    opacity: 0.8;
+}
+
+.not-found-title {
+    font-size: 2rem;
+    color: var(--color-text-primary);
+    margin: 10px 0 20px;
+    font-weight: 600;
+}
+
+.not-found-desc {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-btn);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(226, 149, 120, 0.3);
+}
+
+.btn-home:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(226, 149, 120, 0.4);
+}
