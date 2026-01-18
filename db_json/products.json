@@ -19,7 +19,7 @@
       "material": "Gỗ cao su",
       "description": "Bàn trà gỗ handmade kích thước nhỏ, thích hợp căn hộ mini.",
       "stock": 5,
-      "image": "/img/ke_go_treo_tuong_toi_gian.jpg",
+      "image": "/img/ban_tra_go_nho.jpg",
       "rating": 4.8
     },
     {
@@ -425,7 +425,7 @@
       "name": "Kim đan ADDI Unicorn",
       "price": 261000,
       "category": "tool",
-      "material": "Kim loại",
+        "material": "Kim loại",
       "description": "Kim đan tròn ADDI.",
       "stock": 30,
       "image": "/img/kim-dan-audi.png",

@@ -8,14 +8,18 @@ TYPES & CONSTANTS
 
 ======================= */
 
-type CategoryKey = "all" | "wood" | "yarn";
+type CategoryKey = "all" | "wood" | "yarn"|"material"|"tool";
 const CATEGORY_MAP: Record<CategoryKey, string> = {
 
     all: "Tất cả",
 
     wood: "Đồ gỗ",
 
-    yarn: "Đồ len"
+    yarn: "Đồ len",
+
+    material: "Cotton",
+
+    tool: "Kim loại",
 
 };
 const Products: React.FC = () => {
