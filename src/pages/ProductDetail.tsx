@@ -77,7 +77,6 @@ const ProductDetail: React.FC = () => {
 
     return (
         <>
-            {/* Đã xóa chữ Z thừa ở đây */}
             <div className="product-detail-container">
 
                 {/* CỘT TRÁI: GALLERY */}
@@ -112,7 +111,7 @@ const ProductDetail: React.FC = () => {
 
                     <div className="description-box">
                         <p>{product.description}</p>
-                        <p className="material-info"><strong>🎨 Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
+                        <p className="material-info"><strong>Chất liệu:</strong> {product.material || "Tự nhiên"}</p>
                     </div>
 
                     <div className="action-group">
@@ -162,15 +161,74 @@ const ProductDetail: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <p>✅ Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
-                                    <p>✅ Bảo hành đường may, mối nối trong 3 tháng.</p>
+                                    <p> Đổi trả miễn phí trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+                                    <p> Bảo hành đường may, mối nối trong 3 tháng.</p>
                                 </>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className="product-comments">
+                <h3 className="comment-title">Đánh giá của khách hàng</h3>
+
+                <div className="comment-form">
+                    <div className="comment-avatar">U</div>
+                    <textarea
+                        placeholder="Viết đánh giá của bạn..."
+                        disabled
+                    />
+                    <button disabled>Gửi</button>
+                </div>
+
+                {/* COMMENT LIST (STATIC UI) */}
+                <div className="comment-list">
+
+                    <div className="comment-item">
+                        <div className="comment-avatar">A</div>
+                        <div className="comment-content">
+                            <div className="comment-header">
+                                <strong>Anh Minh</strong>
+                                <span className="comment-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p>
+                                Sản phẩm rất đẹp, đóng gói cẩn thận.
+                                Chất liệu đúng như mô tả, rất đáng tiền 👍
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="comment-item">
+                        <div className="comment-avatar">L</div>
+                        <div className="comment-content">
+                            <div className="comment-header">
+                                <strong>Lan Anh</strong>
+                                <span className="comment-rating">⭐⭐⭐⭐</span>
+                            </div>
+                            <p>
+                                Giao hàng nhanh, sản phẩm thủ công nhìn rất tinh tế.
+                                Sẽ ủng hộ shop lần sau.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="comment-item">
+                        <div className="comment-avatar">T</div>
+                        <div className="comment-content">
+                            <div className="comment-header">
+                                <strong>Tuấn</strong>
+                                <span className="comment-rating">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p>
+                                Mua làm quà tặng rất hợp, người nhận rất thích.
+                                Shop tư vấn nhiệt tình 👌
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </>
     );
 };
